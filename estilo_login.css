@@ -1,5 +1,5 @@
 body{
-    background: linear-gradient(220.10deg,  #4063bc 0%, #ff0000 100%);
+    background-color: #00796B;
 }
 
 .loging{
@@ -10,7 +10,7 @@ body{
     width: 1350px;
     position: relative;
     top: 80px;
-    background-color: #faf0e6;
+    background-color: #B2DFDB;
     animation-duration: 1.2s; /*tiempo de duracion de la animacion*/
     animation-name:loging; /*nombre de la animacion*/
 }
@@ -82,7 +82,7 @@ input{
 .barra{
     display: grid; /*centramos el div*/
     place-items:center;
-    background-color: #00008b;
+    background-color: #1313ecda;
     color: #ffffff;
     height: 40px;
     width: 250px;

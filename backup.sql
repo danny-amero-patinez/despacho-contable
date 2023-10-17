@@ -103,6 +103,9 @@ CREATE TABLE `atenciones` (
   `idOperacion` int(11) DEFAULT NULL,
   `PropuestasYSoluciones` varchar(255) DEFAULT NULL,
   `DetallesRelevantes` varchar(255) DEFAULT NULL,
+  `Proposito_objetivo` varchar(255) DEFAULT NULL,
+  `Conclusiones` varchar(255) DEFAULT NULL,
+  `Activo` int(11) DEFAULT NULL,
   PRIMARY KEY (`idAtencion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -115,6 +118,181 @@ LOCK TABLES `atenciones` WRITE;
 /*!40000 ALTER TABLE `atenciones` DISABLE KEYS */;
 /*!40000 ALTER TABLE `atenciones` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `clientes`
+--
+
+DROP TABLE IF EXISTS `clientes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `clientes` (
+  `idCliente` int(11) NOT NULL AUTO_INCREMENT,
+  `Fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `NombresCompletos` varchar(255) DEFAULT NULL,
+  `NombreNegocio` varchar(255) DEFAULT NULL,
+  `Celular1` varchar(255) DEFAULT NULL,
+  `Celular2` varchar(255) DEFAULT NULL,
+  `Telefono1` varchar(255) DEFAULT NULL,
+  `Correo1` varchar(255) DEFAULT NULL,
+  `Correo2` varchar(255) DEFAULT NULL,
+  `Ciudad` varchar(255) DEFAULT NULL,
+  `Direccion` varchar(255) DEFAULT NULL,
+  `Observaciones` varchar(255) DEFAULT NULL,
+  `RFC` varchar(255) DEFAULT NULL,
+  `Regimen` varchar(255) DEFAULT NULL,
+  `NSS` varchar(255) DEFAULT NULL,
+  `CP` varchar(255) DEFAULT NULL,
+  `OpinionDeCumplimiento` varchar(255) DEFAULT NULL,
+  `LicACargo` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idCliente`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clientes`
+--
+
+LOCK TABLES `clientes` WRITE;
+/*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `emprendedores`
+--
+
+DROP TABLE IF EXISTS `emprendedores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `emprendedores` (
+  `idClientes` int(11) NOT NULL AUTO_INCREMENT,
+  `Fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `idCliente` int(11) DEFAULT NULL,
+  `idAgente` int(11) DEFAULT NULL,
+  `idEstado` int(11) DEFAULT NULL,
+  `idServicio` int(11) DEFAULT NULL,
+  `CapitalInicial` int(11) DEFAULT NULL,
+  `Activo` int(11) DEFAULT NULL,
+  `NombreProyecto` varchar(255) DEFAULT NULL,
+  `Pm` int(11) DEFAULT NULL,
+  `Pf` int(11) DEFAULT NULL,
+  `Regimen` varchar(255) DEFAULT NULL,
+  `Direccion` varchar(255) DEFAULT NULL,
+  `Giro` varchar(255) DEFAULT NULL,
+  `Producto` int(11) DEFAULT NULL,
+  `Servicio` int(11) DEFAULT NULL,
+  `Marketing` int(11) DEFAULT NULL,
+  `Gestion` int(11) DEFAULT NULL,
+  `EquipoTrabajo` int(11) DEFAULT NULL,
+  `NumeroTrabajadores` int(11) DEFAULT NULL,
+  `InovacionTecnologica` varchar(255) DEFAULT NULL,
+  `Observaciones` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idClientes`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `emprendedores`
+--
+
+LOCK TABLES `emprendedores` WRITE;
+/*!40000 ALTER TABLE `emprendedores` DISABLE KEYS */;
+/*!40000 ALTER TABLE `emprendedores` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `estados`
+--
+
+DROP TABLE IF EXISTS `estados`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `estados` (
+  `idEstado` int(11) NOT NULL AUTO_INCREMENT,
+  `Estado` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idEstado`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `estados`
+--
+
+LOCK TABLES `estados` WRITE;
+/*!40000 ALTER TABLE `estados` DISABLE KEYS */;
+/*!40000 ALTER TABLE `estados` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `operaciones`
+--
+
+DROP TABLE IF EXISTS `operaciones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `operaciones` (
+  `idOperacion` int(11) NOT NULL AUTO_INCREMENT,
+  `Operacion` varchar(255) DEFAULT NULL,
+  `Campo1` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idOperacion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `operaciones`
+--
+
+LOCK TABLES `operaciones` WRITE;
+/*!40000 ALTER TABLE `operaciones` DISABLE KEYS */;
+/*!40000 ALTER TABLE `operaciones` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `regimen`
+--
+
+DROP TABLE IF EXISTS `regimen`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `regimen` (
+  `idRegimen` int(11) NOT NULL AUTO_INCREMENT,
+  `Regimen` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idRegimen`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `regimen`
+--
+
+LOCK TABLES `regimen` WRITE;
+/*!40000 ALTER TABLE `regimen` DISABLE KEYS */;
+/*!40000 ALTER TABLE `regimen` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `servicios`
+--
+
+DROP TABLE IF EXISTS `servicios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `servicios` (
+  `idServicios` int(11) NOT NULL AUTO_INCREMENT,
+  `Servicio` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`idServicios`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `servicios`
+--
+
+LOCK TABLES `servicios` WRITE;
+/*!40000 ALTER TABLE `servicios` DISABLE KEYS */;
+/*!40000 ALTER TABLE `servicios` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -125,4 +303,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-16 18:23:19
+-- Dump completed on 2023-10-17 16:30:55

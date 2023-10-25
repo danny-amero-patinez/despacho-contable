@@ -26,6 +26,7 @@ CREATE TABLE `agentes` (
   `idAgente` int(11) NOT NULL AUTO_INCREMENT,
   `Fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `NombresCompletos` varchar(255) DEFAULT NULL,
+  `Password` varchar(255) DEFAULT NULL,
   `NivelDeEstudios` varchar(255) DEFAULT NULL,
   `NombreEscuela` varchar(255) DEFAULT NULL,
   `EstadoDeSalud` varchar(255) DEFAULT NULL,

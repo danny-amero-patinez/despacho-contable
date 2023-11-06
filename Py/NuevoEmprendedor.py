@@ -70,4 +70,4 @@ class AddEntrepreneurApp:
 if __name__ == "__main__":
     root = tk.Tk()
     app = AddEntrepreneurApp(root)
-    root.mainloop()
+    root.mainloop() 

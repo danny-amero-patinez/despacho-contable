@@ -48,8 +48,8 @@ class LoginApp:
         marco.rowconfigure(4, weight=1)
 
         # Etiqueta de título
-        etiqueta_titulo = tk.Label(marco, text="Despacho Contable", font=fuente_personalizada, fg=color_etiqueta,
-                                   bg=color_marco)
+        etiqueta_titulo = tk.Label(marco, text="Despacho Contable", font=fuente_personalizada, fg=color_etiqueta, 
+                            bg=color_marco)
         etiqueta_titulo.grid(row=0, column=0, columnspan=4, pady=(20, 0))  # Alineación arriba, span de columnas
 
         # Etiqueta de nombre de usuario
@@ -96,9 +96,42 @@ class LoginApp:
         contrasena = self.entrada_contrasena.get()
 
         # Verificar las credenciales
-        if usuario == "ivan" and contrasena == "1234":
+       # if usuario == "ivan" and contrasena == "1234":
+            try:
+
+               connection = mysql.connector.connect(host='localhost',
+                                                 database='<database>',
+                                                 user='root',
+                                                 password='<password>')
+
+               sql_select_Query = "select * from agentes"
+               cursor = connection.cursor()
+               cursor.execute(sql_select_Query)
+            # get all records
+               records = cursor.fetchall()
+               print("Total number of rows in table: ", cursor.rowcount)
+
+               print("\nPrinting each row")
+               flag = False
+                for row in records:
+                   if usuario == row[2] and contrasena == row[3]:
+                    # Si las credenciales son correctas, abrir la ventana principal
+                    flag = True
+                #print("Id = ", row[0], )
+                #print("Name = ", row[1])
+                #print("Price  = ", row[2])
+                #print("Purchase date  = ", row[3], "\n")
+
+                except mysql.connector.Error as e:
+                  print("Error reading data from MySQL table", e)
+                finally:
+                 if connection.is_connected():
+                 connection.close()
+                 cursor.close()
+                 print("MySQL connection is closed")
+                 if flag == True:
             # Si las credenciales son correctas, abrir la ventana principal
-            self.abrir_pagina_principal()
+                  self.abrir_pagina_principal()
         else:
             messagebox.showerror("Error", "Nombre de usuario o contraseña incorrectos")
 

@@ -285,6 +285,11 @@ CREATE TABLE `servicios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
+
+/*insert into agentes(NombresCompletos, NivelDeEstudios, NombreEscuela, EstadoDeSalud, Enfermedades, ConsumoSustancias, AntiguosEmpleos, Edad, CElular1, Celular2, Corrreo1, Corrreo2, Direccion, Observaciones, Activo, NombreContacto, Hobbies) values ("Ivan Hernandez", "Prepa trunca", "Esteban", "Con la muñeca fracturada", "Espero que ninguna", "Se ve", "Panadero", 30, "?", "?", "?", "?", "Enrique Segobiano", "?", 1, "Ivan", "?");
+
+
+SELECT NombresCompletos FROM agentes */
 --
 -- Dumping data for table `servicios`
 --
@@ -301,6 +306,6 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES 
 -- Dump completed on 2023-10-17 16:30:55
+

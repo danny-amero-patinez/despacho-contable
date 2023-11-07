@@ -1,5 +1,7 @@
 import tkinter as tk
+import random
 from tkinter import ttk
+from tkinter import messagebox
 
 from NuevoCliente import AddClientApp
 from NuevoEmprendedor import AddEntrepreneurApp
@@ -58,17 +60,17 @@ class principalAdmin:
         register_client_button = ttk.Button(buttons_frame, text="Registrar Agentes")
         register_client_button.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
 
-        # Botón para registrar un nuevo emprendedor
-        register_entrepreneur_button = ttk.Button(buttons_frame, text="Agregar regimen fiscal")
-        register_entrepreneur_button.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
+        # Botón para registrar un nuevo regimen
+        registrar_regimen_boton = ttk.Button(buttons_frame, text="Agregar regimen fiscal", command=self.registrarRegimen)
+        registrar_regimen_boton.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
 
         # Botón para ver la lista de clientes
         view_clients_button = ttk.Button(buttons_frame, text="Ver Agentes")
         view_clients_button.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
 
-        # Botón para ver la lista de emprendedores
-        view_entrepreneurs_button = ttk.Button(buttons_frame, text="Ver regimenes fiscales")
-        view_entrepreneurs_button.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
+        # Botón para ver la lista de regimenes
+        regimen_boton = ttk.Button(buttons_frame, text="Ver regimenes fiscales", command=self.verRegimenes)
+        regimen_boton.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
 
         # Botón para modificar la información
         modify_info_button = ttk.Button(buttons_frame, text="Modificar Información de agentes")
@@ -94,6 +96,19 @@ class principalAdmin:
         from Login import LoginApp
         app = LoginApp(login_window)
 
+    def registrarRegimen(self):
+      #  messagebox.showinfo(message="Se registro correctamente el regimen", title="registro")
+        self.root.destroy()
+
+        ventanaRegimen = tk.Tk()
+        from RegimenesFiscales import RegimenesFiscales
+        RegimenesFiscales(ventanaRegimen)              
+        ventanaRegimen.mainloop()
+
+    
+    def verRegimenes(self):
+        messagebox.showinfo(message="lista de clientes", title="Lista regimenes")
+       # self.root.destroy()
 
 if __name__ == "__main__":
     root = tk.Tk()

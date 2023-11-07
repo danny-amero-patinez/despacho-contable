@@ -10,7 +10,7 @@ class ModifyClientInfoWindow:
         self.editing = False  # Variable para rastrear si se está editando
 
         # Tamaño de la ventana de modificación de cliente
-        window_width = 400
+        window_width = 500
         window_height = 400
 
         # Obtener el ancho y alto de la pantalla

@@ -49,8 +49,8 @@ class LoginApp:
         marco.rowconfigure(4, weight=1)
 
         # Etiqueta de título
-        etiqueta_titulo = tk.Label(marco, text="Despacho Contable", font=fuente_personalizada, fg=color_etiqueta,
-                                   bg=color_marco)
+        etiqueta_titulo = tk.Label(marco, text="Despacho Contable", font=fuente_personalizada, fg=color_etiqueta, 
+                            bg=color_marco)
         etiqueta_titulo.grid(row=0, column=0, columnspan=4, pady=(20, 0))  # Alineación arriba, span de columnas
 
         # Etiqueta de nombre de usuario
@@ -130,7 +130,7 @@ class LoginApp:
 
         if flag == True:
             # Si las credenciales son correctas, abrir la ventana principal
-            self.abrir_pagina_principal()
+                  self.abrir_pagina_principal()
         else:
             messagebox.showerror("Error", "Nombre de usuario o contraseña incorrectos")
         # Verificar las credenciales

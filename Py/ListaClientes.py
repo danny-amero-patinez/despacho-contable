@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, Text, END, messagebox
+import mysql.connector
 
 
 class ClientListApp:
@@ -67,13 +68,61 @@ class ClientListApp:
 
     def load_clients(self):
         # Leer los clientes desde el archivo clientes.txt
+
         try:
-            with open("clientes.txt", "r") as file:
-                client_data = file.read()
-                self.client_list_text.delete(1.0, END)  # Limpiar el widget de texto
-                self.client_list_text.insert(END, client_data)
-        except FileNotFoundError:
-            messagebox.showerror("Error", "El archivo clientes.txt no existe.")
+            connection = mysql.connector.connect(host='localhost',
+                                                 database='?',
+                                                 user='root',
+                                                 password='?')
+
+            sql_select_Query = "select * from clientes"
+            cursor = connection.cursor()
+            cursor.execute(sql_select_Query)
+            # get all records
+            records = cursor.fetchall()
+            # print("Total number of rows in table: ", cursor.rowcount)
+
+            # print("\nPrinting each row")
+            self.client_list_text.delete(1.0, END)
+            query = ""
+
+            for row in records:
+                row = str("Id del cliente = " + str(row[0]) +
+                        "\n" + "Fecha = " + str(row[1]) +
+                        "\n" + "Nombres completos = " + row[2] +
+                        "\n" + "Nombre del negocio = " + row[3] +
+                        "\n" + "Celular 1 = " + row[4] +
+                        "\n" + "Celular 2 = " + row[5] +
+                        "\n" + "Telefono 1 = " + row[6] +
+                        "\n" + "Correo 1 = " + row[7] +
+                        "\n" + "Correo 2 = " + row[8] +
+                        "\n" + "Ciudad = " + row[9] +
+                        "\n" + "Dirección = " + row[10] +
+                        "\n" + "RFC = " + row[11] +
+                        "\n" + "Regimen = " + row[12] +
+                        "\n" + "NSS = " + row[13] +
+                        "\n" + "CP = " + row[14] + "\n\n\n")
+
+                query += row
+
+            self.client_list_text.insert(END, query)
+
+        except mysql.connector.Error as e:
+            messagebox.showerror("Error", "Error reading data from MySQL table.")
+            # print("Error reading data from MySQL table", e)
+        finally:
+            if connection.is_connected():
+                connection.close()
+                cursor.close()
+                # print("MySQL connection is closed")
+
+        # try:
+            # with open("clientes.txt", "r") as file:
+                # client_data = file.read()
+                # self.client_list_text.delete(1.0, END)  # Limpiar el widget de texto
+                # self.client_list_text.insert(END, client_data)
+        # except FileNotFoundError:
+            # messagebox.showerror("Error", "El archivo clientes.txt no existe.")
 
 
 if __name__ == "__main__":

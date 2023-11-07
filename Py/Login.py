@@ -99,22 +99,21 @@ class LoginApp:
         # Validar credenciales con DB
         try:
             connection = mysql.connector.connect(host='localhost',
-                                                 database='<database>',
+                                                 database='?',
                                                  user='root',
-                                                 password='<password>')
+                                                 password='?')
 
             sql_select_Query = "select * from agentes"
             cursor = connection.cursor()
             cursor.execute(sql_select_Query)
             # get all records
             records = cursor.fetchall()
-            print("Total number of rows in table: ", cursor.rowcount)
+            # print("Total number of rows in table: ", cursor.rowcount)
 
-            print("\nPrinting each row")
+            # print("\nPrinting each row")
             flag = False
             for row in records:
                 if usuario == row[2] and contrasena == row[3]:
-                    # Si las credenciales son correctas, abrir la ventana principal
                     flag = True
                 #print("Id = ", row[0], )
                 #print("Name = ", row[1])
@@ -127,7 +126,7 @@ class LoginApp:
             if connection.is_connected():
                 connection.close()
                 cursor.close()
-                print("MySQL connection is closed")
+                # print("MySQL connection is closed")
 
         if flag == True:
             # Si las credenciales son correctas, abrir la ventana principal

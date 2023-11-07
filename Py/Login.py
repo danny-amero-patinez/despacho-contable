@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from tkinter import font as tkfont
+import mysql.connector
 
 
 class LoginApp:
@@ -95,26 +96,24 @@ class LoginApp:
         usuario = self.entrada_usuario.get()
         contrasena = self.entrada_contrasena.get()
 
-        # Verificar las credenciales
-       # if usuario == "ivan" and contrasena == "1234":
-            try:
-
-               connection = mysql.connector.connect(host='localhost',
+        # Validar credenciales con DB
+        try:
+            connection = mysql.connector.connect(host='localhost',
                                                  database='<database>',
                                                  user='root',
                                                  password='<password>')
 
-               sql_select_Query = "select * from agentes"
-               cursor = connection.cursor()
-               cursor.execute(sql_select_Query)
+            sql_select_Query = "select * from agentes"
+            cursor = connection.cursor()
+            cursor.execute(sql_select_Query)
             # get all records
-               records = cursor.fetchall()
-               print("Total number of rows in table: ", cursor.rowcount)
+            records = cursor.fetchall()
+            print("Total number of rows in table: ", cursor.rowcount)
 
-               print("\nPrinting each row")
-               flag = False
-                for row in records:
-                   if usuario == row[2] and contrasena == row[3]:
+            print("\nPrinting each row")
+            flag = False
+            for row in records:
+                if usuario == row[2] and contrasena == row[3]:
                     # Si las credenciales son correctas, abrir la ventana principal
                     flag = True
                 #print("Id = ", row[0], )
@@ -122,18 +121,25 @@ class LoginApp:
                 #print("Price  = ", row[2])
                 #print("Purchase date  = ", row[3], "\n")
 
-                except mysql.connector.Error as e:
-                  print("Error reading data from MySQL table", e)
-                finally:
-                 if connection.is_connected():
-                 connection.close()
-                 cursor.close()
-                 print("MySQL connection is closed")
-                 if flag == True:
+        except mysql.connector.Error as e:
+            print("Error reading data from MySQL table", e)
+        finally:
+            if connection.is_connected():
+                connection.close()
+                cursor.close()
+                print("MySQL connection is closed")
+
+        if flag == True:
             # Si las credenciales son correctas, abrir la ventana principal
                   self.abrir_pagina_principal()
         else:
             messagebox.showerror("Error", "Nombre de usuario o contraseña incorrectos")
+        # Verificar las credenciales
+        #if usuario == "ivan" and contrasena == "1234":
+        #    # Si las credenciales son correctas, abrir la ventana principal
+        #    self.abrir_pagina_principal()
+        #else:
+        #    messagebox.showerror("Error", "Nombre de usuario o contraseña incorrectos")
 
     def abrir_pagina_principal(self):
         # Cerrar la ventana actual

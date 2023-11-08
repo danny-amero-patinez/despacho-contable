@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, Text, END, messagebox
+import mysql.connector
 
 
 class EntrepreneurListApp:
@@ -68,13 +69,52 @@ class EntrepreneurListApp:
 
     def load_entrepreneurs(self):
         # Leer los emprendedores desde el archivo emprendedores.txt
+
         try:
-            with open("emprendedores.txt", "r") as file:
-                entrepreneurs_data = file.read()
-                self.entrepreneurs_text.delete(1.0, END)  # Limpiar el widget de texto
-                self.entrepreneurs_text.insert(END, entrepreneurs_data)
-        except FileNotFoundError:
-            messagebox.showerror("Error", "El archivo emprendedores.txt no existe.")
+            connection = mysql.connector.connect(host='localhost',
+                                                 database='?',
+                                                 user='root',
+                                                 password='?')
+
+            sql_select_Query = "select * from emprendedores"
+            cursor = connection.cursor()
+            cursor.execute(sql_select_Query)
+            # get all records
+            records = cursor.fetchall()
+            # print("Total number of rows in table: ", cursor.rowcount)
+
+            # print("\nPrinting each row")
+            self.entrepreneurs_text.delete(1.0, END)
+            query = ""
+
+            for row in records:
+                row2 = str("Id del cliente = " + str(row[0]) +
+                          "\n" + "Fecha = " + str(row[1]) +
+                          "\n" + "Nombre del proyecto = " + row[8] +
+                          "\n" + "Regimen = " + row[11] +
+                          "\n" + "Direccion = " + row[12] +
+                          "\n" + "Giro = " + row[13] + "\n\n\n")
+
+                query += row2
+
+            self.entrepreneurs_text.insert(END, query)
+
+        except mysql.connector.Error as e:
+            messagebox.showerror("Error", "Error reading data from MySQL table.")
+            # print("Error reading data from MySQL table", e)
+        finally:
+            if connection.is_connected():
+                connection.close()
+                cursor.close()
+                # print("MySQL connection is closed")
+
+        # try:
+            # with open("emprendedores.txt", "r") as file:
+                # entrepreneurs_data = file.read()
+                # self.entrepreneurs_text.delete(1.0, END)  # Limpiar el widget de texto
+                # self.entrepreneurs_text.insert(END, entrepreneurs_data)
+        # except FileNotFoundError:
+            # messagebox.showerror("Error", "El archivo emprendedores.txt no existe.")
 
 
 if __name__ == "__main__":

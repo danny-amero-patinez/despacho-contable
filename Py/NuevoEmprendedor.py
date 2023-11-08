@@ -98,16 +98,16 @@ class AddEntrepreneur:
         producto_checkbox.grid(row=9, column=0, sticky="w", padx=10, pady=5)
 
         marketing_checkbox = tk.Checkbutton(frame, text="Marketing", font=("Arial", 12))
-        marketing_checkbox.grid(row=10, column=0, sticky="w", padx=10, pady=5)
+        marketing_checkbox.grid(row=9, column=1, sticky="w", padx=10, pady=5)
 
         equipo_checkbox = tk.Checkbutton(frame, text="Equipo de Trabajo", font=("Arial", 12))
-        equipo_checkbox.grid(row=11, column=0, sticky="w", padx=10, pady=5)
+        equipo_checkbox.grid(row=9, column=2, sticky="w", padx=10, pady=5)
 
         name_label12 = tk.Label(frame, text="Observaciones:", bg=color_frame, fg=color_label, font=("Arial", 12))
-        name_label12.grid(row=12, column=0, sticky="w", padx=10, pady=5)
+        name_label12.grid(row=10, column=0, sticky="w", padx=10, pady=5)
 
         self.name_entry12 = tk.Entry(frame, font=("Arial", 12))
-        self.name_entry12.grid(row=12, column=1, padx=10, pady=5)
+        self.name_entry12.grid(row=10, column=1, padx=10, pady=5)
 
         register_button = tk.Button(frame, text="Registrar", command=self.register_Entrepreneur, bg=color_button,
                                     fg=color_button_text, font=("Arial", 12))

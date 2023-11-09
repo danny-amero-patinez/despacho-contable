@@ -3,9 +3,6 @@ import random
 from tkinter import ttk
 from tkinter import messagebox
 
-from NuevoCliente import AddClientApp
-from NuevoEmprendedor import AddEntrepreneurApp
-
 
 class principalAdmin:
     def __init__(self, root):

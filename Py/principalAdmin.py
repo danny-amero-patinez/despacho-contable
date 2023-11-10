@@ -4,7 +4,7 @@ from tkinter import ttk
 from tkinter import messagebox
 
 from NuevoCliente import AddClientApp
-from NuevoEmprendedor import AddEntrepreneurApp
+from NuevoEmprendedor import AddEntrepreneur
 
 
 class principalAdmin:

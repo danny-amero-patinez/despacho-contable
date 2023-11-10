@@ -6,7 +6,6 @@ from tkinter import messagebox
 from NuevoCliente import AddClientApp
 from NuevoEmprendedor import AddEntrepreneur
 
-
 class principalAdmin:
     def __init__(self, root):
         self.root = root

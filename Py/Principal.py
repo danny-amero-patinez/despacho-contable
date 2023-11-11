@@ -1,8 +1,8 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 
 from NuevoCliente import AddClientApp
-from NuevoEmprendedor import AddEntrepreneurApp
+from NuevoEmprendedor import AddEntrepreneur
 
 
 class HomeApp:
@@ -93,7 +93,7 @@ class HomeApp:
     def open_entrepreneur_registration(self):
         # Crear una nueva ventana para el registro de emprendedores
         entrepreneur_registration_window = tk.Toplevel(self.root)
-        app = AddEntrepreneurApp(entrepreneur_registration_window)
+        app = AddEntrepreneur(entrepreneur_registration_window)
 
     def view_clients(self):
         # Crear una nueva ventana para mostrar la lista de clientes

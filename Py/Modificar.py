@@ -59,8 +59,8 @@ class ModifyInfoWindow:
         client_info_window.wait_window()
 
     def modificar_emprededor_info(self):
-        emprededor_window = tk.Toplevel(self.root)
-        ModificarrEmprendedor(emprededor_window)
+        emprendedor_window = tk.Toplevel(self.root)
+        ModificarrEmprendedor(emprendedor_window)
         emprendedor_window.transient(self.root)
         emprendedor_window.grab_set()
         emprendedor_window.wait_window()

@@ -5,12 +5,13 @@ class ModificarrEmprendedor:
     def __init__(self, root):
         self.root = root
         self.root.title("Modificar informarcion del emprendedor")
+        self.editing = False
 
         ancho_pantalla = root.winfo_screenwidth()
         alto_pantalla = root.winfo_screenheight()
 
-        ancho_ventana = 600
-        alto_ventana = 350
+        ancho_ventana = 700
+        alto_ventana = 400
 
         x = (ancho_pantalla - ancho_ventana) // 2
         y = (alto_pantalla - alto_ventana) // 2
@@ -72,14 +73,54 @@ class ModificarrEmprendedor:
         save_button = ttk.Button(marco, text="Guardar Cambios", command=self.modificarEmprendedor, style="TButton")
         save_button.grid(row=7, column=0, columnspan=2, padx=10, pady=10)
 
+        cargar_info = ttk.Button(marco, text="Cargar Informacion", command=self.cargarInformacion, style="TButton")
+        cargar_info.grid(row=1, column=2, padx=10, pady=5)
+
         # Deshabilitar la edición de los campos por defecto
     #    self.toggle_editing()
+
+        self.toggle_editing()
+
+    def toggle_editing(self):
+        # Alternar entre modo de edición y vista
+        state = tk.NORMAL if self.editing else tk.DISABLED
+        self.nombre_entry.config(state=state)
+        self.apellido_entry.config(state=state)
+        self.direccion_entry.config(state=state)
+        self.regimen_entry.config(state=state)
 
     def modificarEmprendedor(self):
         # Agregar aquí la lógica para guardar los cambios en la información del cliente
         # en tu base de datos o sistema de almacenamiento
         tk.messagebox.showinfo("Guardar Cambios", "Cambios guardados exitosamente")
         self.toggle_editing()  # Deshabilitar la edición
+
+    def cargarInformacion(self):
+        seleccion_emprendedor = self.seleccion_emprendedor.get()
+        if seleccion_emprendedor:
+            try:
+                # Leer la información del cliente seleccionado desde el archivo clientes.txt
+                with open("clientes.txt", "r") as file:
+                    client_data = file.readlines()
+                    for line in client_data:
+                        # Cada línea del archivo debe contener: Nombre, Apellido, Dirección, Régimen Fiscal
+                        nombre, apellido, direccion, regimen = line.strip().split(",")
+                        if f"{nombre} {apellido}" == seleccion_emprendedor:
+                            # Mostrar la información en los campos de entrada
+                            self.nombre_entry.delete(0, tk.END)
+                            self.nombre_entry.insert(0, name)
+                            self.apellido_entry.delete(0, tk.END)
+                            self.apellido_entry.insert(0, last_name)
+                            self.direccion_entry.delete(0, tk.END)
+                            self.direccion_entry.insert(0, direccion)
+                            self.regimen_entry.delete(0, tk.END)
+                            self.regimen_entry.insert(0, regimen)
+                            break
+            except FileNotFoundError:
+                messagebox.showerror("Error", "El archivo clientes.txt no existe.")
+        else:
+            messagebox.showwarning("Advertencia", "Selecciona un cliente antes de cargar la información.")
+
 
 
 

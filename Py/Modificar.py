@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from ModCliente import (ModifyClientInfoWindow)
+from ModificarEmprendedor import (ModificarrEmprendedor)
 
 
 # Clase para la ventana principal
@@ -46,6 +47,9 @@ class ModifyInfoWindow:
                                    command=self.modify_client_info, style="TButton")
         client_button.grid(row=1, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
 
+        emprendedor_boton = ttk.Button(frame, text="Modificar Informacion del emprendedor", command=self.modificar_emprededor_info, style="TButton")
+        emprendedor_boton.grid(row=2, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
+
     def modify_client_info(self):
         # Abre la ventana de modificación de información del cliente
         client_info_window = tk.Toplevel(self.root)
@@ -53,6 +57,13 @@ class ModifyInfoWindow:
         client_info_window.transient(self.root)
         client_info_window.grab_set()
         client_info_window.wait_window()
+
+    def modificar_emprededor_info(self):
+        emprededor_window = tk.Toplevel(self.root)
+        ModificarrEmprendedor(emprededor_window)
+        emprendedor_window.transient(self.root)
+        emprendedor_window.grab_set()
+        emprendedor_window.wait_window()
 
 
 if __name__ == "__main__":

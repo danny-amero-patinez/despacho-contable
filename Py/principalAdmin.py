@@ -3,6 +3,7 @@ from tkinter import messagebox
 from tkinter import ttk
 from NuevoAgente import AgenteApp
 from RegimenesFiscales import RegimenesFiscales
+from ListaRegimenes import Listaregimenes
 from ListaAgentes import AgentListApp
 from ModificarAgente import ModificarAgenteApp
 from Login import LoginApp
@@ -85,7 +86,9 @@ class PrincipalAdmin:
             self.root.destroy()
 
     def ver_regimenes(self):
-        messagebox.showinfo(message="lista de clientes", title="Lista regimenes")
+        lista_regimenes_window = tk.Toplevel(self.root)
+        app = Listaregimenes(lista_regimenes_window)
+      #  messagebox.showinfo(message="lista de clientes", title="Lista regimenes")
 
     def open_registrar_agente(self):
         # Crear una nueva ventana para el registro de agentes

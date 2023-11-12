@@ -25,7 +25,7 @@ class ModificarAgenteApp:
         ttk.Label(frame, text="Seleccione un Agente:", style="Custom.TLabel").pack(pady=(20, 5))
         agente_combobox = ttk.Combobox(frame, textvariable=self.selected_agente_id,
                                        values=[agente["id"] for agente in self.agentes], style="Custom.TCombobox")
-        agente_combobox.bind("<<ComboboxSelected>>", self.cargar_datos_agente_seleccionado)
+        agente_combobox.bind("<<ComboboxSelected>>", lambda event: self.cargar_datos_agente_seleccionado())
         agente_combobox.pack(pady=5)
 
         # Widgets para modificar la información del agente
@@ -86,7 +86,7 @@ class ModificarAgenteApp:
 
     def cargar_datos_agente_seleccionado(self, event):
         # Obtén el ID del agente seleccionado
-        selected_id = int(self.selected_agente_id.get())
+        selected_id = int(self.selected_agente_id.get() if self.select_agente_id.get() else -1)
 
         # Busca el agente seleccionado en los datos simulados
         for agente in self.agentes:

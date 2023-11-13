@@ -72,13 +72,16 @@ class HomeApp:
         view_entrepreneurs_button = ttk.Button(buttons_frame, text="Ver Emprendedores", command=self.view_entrepreneurs)
         view_entrepreneurs_button.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
 
+        cambiar_button = ttk.Button(buttons_frame, text="Cambiar cliente a emprendedor", command=self.cambiarClienteEmprendedor)
+        cambiar_button.grid(row=2, column=0, columnspan=2, pady=10, sticky="nsew")
+
         # Botón para modificar la información
         modify_info_button = ttk.Button(buttons_frame, text="Modificar Información", command=self.modify_info)
-        modify_info_button.grid(row=2, column=0, columnspan=2, pady=10, sticky="nsew")
+        modify_info_button.grid(row=3, column=0, columnspan=2, pady=10, sticky="nsew")
 
         # Botón para cerrar la sesión
         logout_button = ttk.Button(buttons_frame, text="Cerrar Sesión", command=self.logout)
-        logout_button.grid(row=3, column=0, columnspan=2, pady=10, sticky="nsew")
+        logout_button.grid(row=4, column=0, columnspan=2, pady=10, sticky="nsew")
 
         # Configurar las columnas y filas para hacer que la interfaz sea responsiva
         frame.columnconfigure(0, weight=1)
@@ -106,6 +109,11 @@ class HomeApp:
         entrepreneurs_window = tk.Toplevel(self.root)
         from ListaEmprendedores import EntrepreneurListApp
         app = EntrepreneurListApp(entrepreneurs_window)  # Usa la nueva clase
+
+    def cambiarClienteEmprendedor(self):
+        cambiar_window = tk.Toplevel(self.root)
+        from Cliente import ClienteApp
+        app = ClienteApp(cambiar_window)
 
     def modify_info(self):
         # Crear una nueva ventana para modificar la información

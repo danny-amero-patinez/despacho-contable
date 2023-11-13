@@ -52,7 +52,7 @@ class eliminarClienteEmprendedor:
         eliminaremprendedor.grid(row=100, padx=285, columnspan=1, sticky="w", pady=10)
 
 
-    def eliminar_Cliente(self):
+    def eliminar_Cliente(self):                                      
         messagebox.showinfo(title="Eliminar clienter", message="Se elimino al cliete seleccionado")
         
 

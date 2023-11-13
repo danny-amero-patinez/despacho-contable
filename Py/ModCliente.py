@@ -52,7 +52,7 @@ class ModifyClientInfoWindow:
             connection = mysql.connector.connect(host='localhost',
                                                  database='lion',
                                                  user='root',
-                                                 password='ad')
+                                                 password='?')
 
             sql_select_Query = "select NombresCompletos from clientes"
             cursor = connection.cursor()
@@ -129,7 +129,7 @@ class ModifyClientInfoWindow:
                 connection = mysql.connector.connect(host='localhost',
                                                      database='lion',
                                                      user='root',
-                                                     password='ad')
+                                                     password='?')
 
                 sql_select_Query = "select * from clientes where NombresCompletos = %s"
 

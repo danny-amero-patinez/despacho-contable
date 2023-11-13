@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
+import mysql.connector
 
 
 # Clase para la ventana de modificación de información del cliente
@@ -45,8 +46,33 @@ class ModifyClientInfoWindow:
         select_label = ttk.Label(frame, text="Selecciona al Cliente:", background=color_frame, foreground=color_label)
         select_label.grid(row=1, column=0, padx=10, pady=5, sticky="w")
 
+        self.client_names = []
+
+        try:
+            connection = mysql.connector.connect(host='localhost',
+                                                 database='lion',
+                                                 user='root',
+                                                 password='ad')
+
+            sql_select_Query = "select NombresCompletos from clientes"
+            cursor = connection.cursor()
+            cursor.execute(sql_select_Query)
+            # get all records
+            records = cursor.fetchall()
+            # query = ""
+            self.client_names = [x for x in records]
+
+        except mysql.connector.Error as e:
+            messagebox.showerror("Error", "Error reading data from MySQL table.")
+            # print("Error reading data from MySQL table", e)
+        finally:
+            if connection.is_connected():
+                connection.close()
+                cursor.close()
+                # print("MySQL connection is closed")
+
         # Lista desplegable para seleccionar al cliente
-        self.client_names = []  # Lista para almacenar nombres de clientes
+        # self.client_names = []  # Lista para almacenar nombres de clientes
         self.selected_client = tk.StringVar()
         self.client_dropdown = ttk.Combobox(frame, textvariable=self.selected_client, values=self.client_names)
         self.client_dropdown.grid(row=1, column=1, padx=10, pady=5)
@@ -97,27 +123,37 @@ class ModifyClientInfoWindow:
 
     def load_client_info(self):
         selected_client = self.selected_client.get()
+        data = ""
         if selected_client:
             try:
-                # Leer la información del cliente seleccionado desde el archivo clientes.txt
-                with open("clientes.txt", "r") as file:
-                    client_data = file.readlines()
-                    for line in client_data:
-                        # Cada línea del archivo debe contener: Nombre, Apellido, Dirección, Régimen Fiscal
-                        name, last_name, direccion, regimen = line.strip().split(",")
-                        if f"{name} {last_name}" == selected_client:
-                            # Mostrar la información en los campos de entrada
-                            self.name_entry.delete(0, tk.END)
-                            self.name_entry.insert(0, name)
-                            self.last_name_entry.delete(0, tk.END)
-                            self.last_name_entry.insert(0, last_name)
-                            self.direccion_entry.delete(0, tk.END)
-                            self.direccion_entry.insert(0, direccion)
-                            self.regimen_entry.delete(0, tk.END)
-                            self.regimen_entry.insert(0, regimen)
-                            break
-            except FileNotFoundError:
-                messagebox.showerror("Error", "El archivo clientes.txt no existe.")
+                connection = mysql.connector.connect(host='localhost',
+                                                     database='lion',
+                                                     user='root',
+                                                     password='ad')
+
+                sql_select_Query = "select * from clientes where NombresCompletos = %s"
+
+                cursor = connection.cursor()
+                cursor.execute(sql_select_Query, (selected_client,))
+                data = cursor.fetchall()
+
+            except mysql.connector.Error as e:
+                messagebox.showerror("Error", "Error reading data from MySQL table.")
+                # print("Error reading data from MySQL table", e)
+            finally:
+                if connection.is_connected():
+                    connection.close()
+                    cursor.close()
+                    # print("MySQL connection is closed")
+
+            self.name_entry.delete(0, tk.END)
+            self.name_entry.insert(0, data[0][2])
+            self.last_name_entry.delete(0, tk.END)
+            self.last_name_entry.insert(0, data[0][3])
+            self.direccion_entry.delete(0, tk.END)
+            self.direccion_entry.insert(0, data[0][10])
+            self.regimen_entry.delete(0, tk.END)
+            self.regimen_entry.insert(0, data[0][13])
         else:
             messagebox.showwarning("Advertencia", "Selecciona un cliente antes de cargar la información.")
 

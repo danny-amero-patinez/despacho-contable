@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+import mysql.connector
 
 class ModificarrEmprendedor:
     def __init__(self, root):
@@ -36,6 +37,30 @@ class ModificarrEmprendedor:
 
         # Lista desplegable para seleccionar al cliente
         self.emprendedor_nombre = []  # Lista para almacenar nombres de clientes
+
+        try:
+            connection = mysql.connector.connect(host='localhost',
+                                                 database='lion',
+                                                 user='root',
+                                                 password='ad')
+
+            sql_select_Query = "select NombreProyecto from emprendedores"
+            cursor = connection.cursor()
+            cursor.execute(sql_select_Query)
+            # get all records
+            records = cursor.fetchall()
+            # query = ""
+            self.emprendedor_nombre = [x for x in records]
+
+        except mysql.connector.Error as e:
+            messagebox.showerror("Error", "Error reading data from MySQL table.")
+            # print("Error reading data from MySQL table", e)
+        finally:
+            if connection.is_connected():
+                connection.close()
+                cursor.close()
+                # print("MySQL connection is closed")
+
         self.seleccion_emprendedor = tk.StringVar()
         self.emprendedor_dropdown = ttk.Combobox(marco, textvariable=self.seleccion_emprendedor, values=self.emprendedor_nombre)
         self.emprendedor_dropdown.grid(row=2, column=1, padx=10, pady=5)
@@ -97,27 +122,37 @@ class ModificarrEmprendedor:
 
     def cargarInformacion(self):
         seleccion_emprendedor = self.seleccion_emprendedor.get()
+        data = ""
         if seleccion_emprendedor:
             try:
-                # Leer la información del cliente seleccionado desde el archivo clientes.txt
-                with open("clientes.txt", "r") as file:
-                    client_data = file.readlines()
-                    for line in client_data:
-                        # Cada línea del archivo debe contener: Nombre, Apellido, Dirección, Régimen Fiscal
-                        nombre, apellido, direccion, regimen = line.strip().split(",")
-                        if f"{nombre} {apellido}" == seleccion_emprendedor:
-                            # Mostrar la información en los campos de entrada
-                            self.nombre_entry.delete(0, tk.END)
-                            self.nombre_entry.insert(0, name)
-                            self.apellido_entry.delete(0, tk.END)
-                            self.apellido_entry.insert(0, last_name)
-                            self.direccion_entry.delete(0, tk.END)
-                            self.direccion_entry.insert(0, direccion)
-                            self.regimen_entry.delete(0, tk.END)
-                            self.regimen_entry.insert(0, regimen)
-                            break
-            except FileNotFoundError:
-                messagebox.showerror("Error", "El archivo clientes.txt no existe.")
+                connection = mysql.connector.connect(host='localhost',
+                                                     database='lion',
+                                                     user='root',
+                                                     password='ad')
+
+                sql_select_Query = "select * from emprendedores where NombreProyecto = %s"
+
+                cursor = connection.cursor()
+                cursor.execute(sql_select_Query, (seleccion_emprendedor,))
+                data = cursor.fetchall()
+
+            except mysql.connector.Error as e:
+                messagebox.showerror("Error", "Error reading data from MySQL table.")
+                # print("Error reading data from MySQL table", e)
+            finally:
+                if connection.is_connected():
+                    connection.close()
+                    cursor.close()
+                    # print("MySQL connection is closed")
+
+            self.nombre_entry.delete(0, tk.END)
+            self.nombre_entry.insert(0, data[0][8])
+            self.apellido_entry.delete(0, tk.END)
+            self.apellido_entry.insert(0, data[0][13])
+            self.direccion_entry.delete(0, tk.END)
+            self.direccion_entry.insert(0, data[0][12])
+            self.regimen_entry.delete(0, tk.END)
+            self.regimen_entry.insert(0, data[0][11])
         else:
             messagebox.showwarning("Advertencia", "Selecciona un cliente antes de cargar la información.")
 

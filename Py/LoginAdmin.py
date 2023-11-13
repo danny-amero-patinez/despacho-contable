@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
-
+from PIL import ImageTk, Image
 
 class AdminLoginApp:
     def __init__(self, root):
@@ -45,6 +45,11 @@ class AdminLoginApp:
         # Etiqueta de título
         title_label = tk.Label(frame, text="Despacho Contable", font=("Helvetica", 20), bg=frame_color, fg=label_color)
         title_label.grid(row=0, column=0, columnspan=2, pady=20)  # Alineación arriba
+
+        # Importacion de la imagen
+        imagenImportada = Image.open("Logo 1.png")
+        imagenRedimensionada = imagenImportada.resize((100,100), Image.BILINEAR)
+        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
 
         # Etiqueta de nombre de usuario
         username_label = tk.Label(frame, text="Usuario", font=("Helvetica", 12), bg=frame_color,

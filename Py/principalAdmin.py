@@ -7,6 +7,7 @@ from ListaRegimenes import Listaregimenes
 from ListaAgentes import AgentListApp
 from ModificarAgente import ModificarAgenteApp
 from Login import LoginApp
+from PIL import ImageTk, Image
 
 
 class PrincipalAdmin:

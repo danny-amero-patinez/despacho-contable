@@ -1,6 +1,7 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import Label, messagebox
 from tkinter import font as tkfont
+from PIL import ImageTk, Image
 import mysql.connector
 
 
@@ -17,7 +18,7 @@ class LoginApp:
 
         # Calcula las coordenadas para centrar la ventana en la pantalla
         ancho_ventana = 400
-        alto_ventana = 400
+        alto_ventana = 600
         x = (ancho_pantalla - ancho_ventana) // 2
         y = (alto_pantalla - alto_ventana) // 2
 
@@ -47,39 +48,47 @@ class LoginApp:
         marco.rowconfigure(2, weight=1)
         marco.rowconfigure(3, weight=1)
         marco.rowconfigure(4, weight=1)
-
+        # Importacion de la imagen y redimensionamiento
+        imagenImportada = Image.open("Logo 1.png")
+        imagenRedimensionada = imagenImportada.resize((128,128), Image.BILINEAR)
+        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
+        # Etiqueta contenedora de Logo
+        etiqueta_logo = Label(marco, image= imagen_Logo, bg='WHITE')
+        etiqueta_logo.noMeBorresCrack= imagen_Logo
+        etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
+        
         # Etiqueta de título
         etiqueta_titulo = tk.Label(marco, text="Despacho Contable", font=fuente_personalizada, fg=color_etiqueta, 
                             bg=color_marco)
-        etiqueta_titulo.grid(row=0, column=0, columnspan=4, pady=(20, 0))  # Alineación arriba, span de columnas
+        etiqueta_titulo.grid(row=1, column=0, columnspan=4, pady=(20, 0))  # Alineación arriba, span de columnas
 
         # Etiqueta de nombre de usuario
         etiqueta_usuario = tk.Label(marco, text="Usuario", font=fuente_personalizada, bg=color_marco, fg=color_etiqueta)
-        etiqueta_usuario.grid(row=1, column=0, pady=(20, 10))  # Alineación arriba
+        etiqueta_usuario.grid(row=2, column=0, pady=(20, 10))  # Alineación arriba
 
         # Campo de entrada de nombre de usuario
         self.entrada_usuario = tk.Entry(marco, font=fuente_personalizada)
-        self.entrada_usuario.grid(row=2, column=0, pady=10, padx=10, columnspan=4, sticky="ew")  # Span de columnas
+        self.entrada_usuario.grid(row=3, column=0, pady=10, padx=10, columnspan=4, sticky="ew")  # Span de columnas
 
         # Etiqueta de contraseña
         etiqueta_contrasena = tk.Label(marco, text="Contraseña", font=fuente_personalizada, bg=color_marco,
                                        fg=color_etiqueta)
-        etiqueta_contrasena.grid(row=3, column=0, pady=10)  # Alineación arriba
+        etiqueta_contrasena.grid(row=4, column=0, pady=10)  # Alineación arriba
 
         # Campo de entrada de contraseña
         self.entrada_contrasena = tk.Entry(marco, show="*", font=fuente_personalizada)
-        self.entrada_contrasena.grid(row=4, column=0, pady=10, padx=10, columnspan=4, sticky="ew")  # Span de columnas
+        self.entrada_contrasena.grid(row=5, column=0, pady=10, padx=10, columnspan=4, sticky="ew")  # Span de columnas
 
         # Botón de inicio de sesión
         boton_inicio_sesion = tk.Button(marco, text="Iniciar Sesión", command=self.intentar_inicio_sesion,
                                         font=fuente_personalizada,
                                         bg=color_boton, fg=color_texto_boton)
-        boton_inicio_sesion.grid(row=5, column=0, columnspan=4, pady=20)  # Alineación arriba, span de columnas
+        boton_inicio_sesion.grid(row=6, column=0, columnspan=4, pady=20)  # Alineación arriba, span de columnas
 
         boton_inicio_admin = tk.Button(marco, text="Iniciar Sesión como Administrador",
                                        command=self.abrir_inicio_sesion_admin,
                                        font=fuente_personalizada, bg=color_boton, fg=color_texto_boton)
-        boton_inicio_admin.grid(row=6, column=0, columnspan=4, pady=10)  # Añadir el botón arriba
+        boton_inicio_admin.grid(row=7, column=0, columnspan=4, pady=10)  # Añadir el botón arriba
 
     def abrir_inicio_sesion_admin(self):
         # Cerrar la ventana actual

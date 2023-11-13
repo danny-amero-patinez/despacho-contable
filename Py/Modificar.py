@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from ModCliente import (ModifyClientInfoWindow)
 from ModificarEmprendedor import (ModificarrEmprendedor)
-
+from PIL import ImageTk, Image
 
 # Clase para la ventana principal
 class ModifyInfoWindow:

@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import mysql.connector
-
+from PIL import ImageTk, Image
 class ModificarrEmprendedor:
     def __init__(self, root):
         self.root = root

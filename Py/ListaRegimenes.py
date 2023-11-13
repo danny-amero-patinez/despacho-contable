@@ -1,7 +1,8 @@
 import tkinter as tk
-from tkinter import ttk, Text, END, messagebox
+from tkinter import ttk, Text, END, messagebox , Label
 import mysql.connector
 from tkinter import messagebox
+from PIL import ImageTk, Image
 
 class Listaregimenes:
     def __init__(self, root): 
@@ -29,19 +30,27 @@ class Listaregimenes:
         # Crear un marco principal para organizar los elementos de la interfaz
         frame = tk.Frame(root, bg=color_frame, bd=5)
         frame.grid(row=0, column=0, sticky="nsew")
+        
+        imagenImportada = Image.open("Logo 1.png")
+        imagenRedimensionada = imagenImportada.resize((128,128), Image.BILINEAR)
+        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
+        
+        etiqueta_logo = Label(frame, image= imagen_Logo, bg='WHITE')
+        etiqueta_logo.noMeBorresCrack = imagen_Logo
+        etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
 
         # Etiqueta de título
         title_label = tk.Label(frame, text="Lista de regimenes", font=("Helvetica", 20), bg=color_frame,
                                fg=color_label)
-        title_label.grid(row=0, column=0, columnspan=2, pady=(20, 30))
+        title_label.grid(row=1, column=0, columnspan=2, pady=(20, 30))
 
         # Widget de texto para mostrar la lista de emprendedores
         self.regimenes_text = Text(frame, bg=color_frame, fg=color_button_text)
-        self.regimenes_text.grid(row=1, column=0, columnspan=2, sticky="nsew")
+        self.regimenes_text.grid(row=2, column=0, columnspan=2, sticky="nsew")
 
         # Botón para cargar la lista de emprendedores
         regimenes_button = ttk.Button(frame, text="Cargar Regimenes", command=self.cargarRegimenes, style="Custom.TButton")
-        regimenes_button.grid(row=2, column=0, columnspan=2, pady=10, padx=20, sticky="nsew")
+        regimenes_button.grid(row=3, column=0, columnspan=2, pady=10, padx=20, sticky="nsew")
 
         # Cargar el estilo personalizado para los botones
         s = ttk.Style()

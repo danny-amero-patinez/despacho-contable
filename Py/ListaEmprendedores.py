@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, Text, END, messagebox
 import mysql.connector
-
+from PIL import ImageTk, Image
 
 class EntrepreneurListApp:
     def __init__(self, root):

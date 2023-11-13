@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter.font import Font
+from PIL import ImageTk, Image
 
 #-
 from Cambiar_cliente_enprendedor import Cambiar

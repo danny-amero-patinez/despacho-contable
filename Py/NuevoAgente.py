@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 import mysql.connector
 import random
-
+from PIL import ImageTk, Image
 
 class AgenteApp:
     def __init__(self, root):

@@ -1,5 +1,5 @@
 import tkinter as tk
-
+from PIL import ImageTk, Image
 class Cambiarcliente:
     def __init__(self, root):
         self.root = root

@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, Text, END, messagebox, StringVar
 import mysql.connector
+from PIL import ImageTk, Image
 
 
 class AgentListApp:

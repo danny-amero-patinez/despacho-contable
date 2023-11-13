@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter.font import Font 
-
+from PIL import ImageTk, Image
 class ClienteApp:
     def __init__(self, root):
         self.root = root

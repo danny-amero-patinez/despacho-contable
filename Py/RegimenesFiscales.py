@@ -1,8 +1,8 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, Label
 import random
 import mysql.connector
-
+from PIL import ImageTk, Image
 
 class RegimenesFiscales:
     def __init__(self, root):
@@ -12,8 +12,8 @@ class RegimenesFiscales:
         ancho_pantalla = root.winfo_screenwidth()
         alto_pantalla = root.winfo_screenheight()
 
-        ancho_ventana = 450
-        alto_ventana = 300
+        ancho_ventana = 500
+        alto_ventana = 400
         x = (ancho_pantalla - ancho_ventana) // 2
         y = (alto_pantalla - alto_ventana) // 2
 
@@ -28,6 +28,16 @@ class RegimenesFiscales:
 
         frame = tk.Frame(root, padx=20, pady=20, bg=colorMarco)
         frame.pack(expand=True, fill="both")
+        
+        # Importacion de la imagen y redimensionamiento
+        imagenImportada = Image.open("Logo 1.png")
+        imagenRedimensionada = imagenImportada.resize((128,128), Image.BILINEAR)
+        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
+        # Etiqueta contenedora de Logo
+        etiqueta_logo = Label(frame, image= imagen_Logo, bg='WHITE')
+        etiqueta_logo.noMeBorresCrack= imagen_Logo
+        etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
+        
 
         idRegimenLabel = tk.Label(frame, text="ID del Régimen:", bg=colorMarco, fg=colorLabel)
         idRegimenLabel.grid(row=1, column=0, sticky="w", padx=(0, 10), pady=(0, 10))

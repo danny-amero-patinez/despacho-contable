@@ -3,7 +3,7 @@ from tkinter import ttk, messagebox
 
 from NuevoCliente import AddClientApp
 from NuevoEmprendedor import AddEntrepreneur
-
+from PIL import ImageTk, Image
 
 class HomeApp:
     def __init__(self, root):

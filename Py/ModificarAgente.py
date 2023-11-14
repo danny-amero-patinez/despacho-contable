@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, Label, messagebox
 import mysql.connector
 from PIL import ImageTk, Image
 
@@ -20,6 +20,14 @@ class ModificarAgenteApp:
 
         frame = ttk.Frame(root, style="Custom.TFrame")
         frame.pack(expand=True, fill="both")
+
+        imagenImportada = Image.open("LogoB.png")
+        imagenRedimensionada = imagenImportada.resize((128, 64), Image.BILINEAR)
+        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
+        # Etiqueta contenedora de Logo
+        etiqueta_logo = Label(frame, image=imagen_Logo, bg='WHITE')
+        etiqueta_logo.noMeBorresCrack = imagen_Logo
+        etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
 
         # Widgets para seleccionar el agente
         ttk.Label(frame, text="Seleccione un Agente:", style="Custom.TLabel").pack(pady=(20, 5))

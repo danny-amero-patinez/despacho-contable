@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, Text, END, messagebox
+from tkinter import ttk, Text, END, Label, messagebox
 import mysql.connector
 from PIL import ImageTk, Image
 
@@ -31,19 +31,27 @@ class EntrepreneurListApp:
         frame = tk.Frame(root, bg=color_frame, bd=5)
         frame.grid(row=0, column=0, sticky="nsew")
 
+        imagenImportada = Image.open("LogoB.png")
+        imagenRedimensionada = imagenImportada.resize((128, 64), Image.BILINEAR)
+        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
+
+        etiqueta_logo = Label(frame, image=imagen_Logo, bg='WHITE')
+        etiqueta_logo.noMeBorresCrack = imagen_Logo
+        etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
+
         # Etiqueta de título
         title_label = tk.Label(frame, text="Lista de Emprendedores", font=("Helvetica", 20), bg=color_frame,
                                fg=color_label)
-        title_label.grid(row=0, column=0, columnspan=2, pady=(20, 30))
+        title_label.grid(row=1, column=0, columnspan=2, pady=(20, 30))
 
         # Widget de texto para mostrar la lista de emprendedores
         self.entrepreneurs_text = Text(frame, bg=color_frame, fg=color_button_text)
-        self.entrepreneurs_text.grid(row=1, column=0, columnspan=2, sticky="nsew")
+        self.entrepreneurs_text.grid(row=2, column=0, columnspan=2, sticky="nsew")
 
         # Botón para cargar la lista de emprendedores
         load_button = ttk.Button(frame, text="Cargar Emprendedores", command=self.load_entrepreneurs,
                                  style="Custom.TButton")
-        load_button.grid(row=2, column=0, columnspan=2, pady=10, padx=20, sticky="nsew")
+        load_button.grid(row=3, column=0, columnspan=2, pady=10, padx=20, sticky="nsew")
 
         # Cargar el estilo personalizado para los botones
         s = ttk.Style()

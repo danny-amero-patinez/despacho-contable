@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, Label, messagebox
 
 from NuevoCliente import AddClientApp
 from NuevoEmprendedor import AddEntrepreneur
@@ -12,7 +12,7 @@ class HomeApp:
 
         # Tamaño de la ventana
         window_width = 400
-        window_height = 400
+        window_height = 550
 
         # Obtener el ancho y alto de la pantalla
         screen_width = root.winfo_screenwidth()
@@ -44,44 +44,52 @@ class HomeApp:
         frame.rowconfigure(0, weight=1)
         frame.rowconfigure(1, weight=1)
 
+        imagenImportada = Image.open("Logo1.png")
+        imagenRedimensionada = imagenImportada.resize((120, 120), Image.BILINEAR)
+        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
+        # Etiqueta contenedora de Logo
+        etiqueta_logo = Label(frame, image=imagen_Logo, bg='WHITE')
+        etiqueta_logo.noMeBorresCrack = imagen_Logo
+        etiqueta_logo.grid(row=0, column=0, padx=0, pady=10)
+
         # Etiqueta de título
         title_label = tk.Label(frame, text="Bienvenido", font=("Helvetica", 20), bg=color_frame, fg=color_label)
-        title_label.grid(row=0, column=0, columnspan=2, pady=(20, 30))
+        title_label.grid(row=1, column=0, columnspan=2, pady=(20, 30))
 
         # Botones
         buttons_frame = ttk.LabelFrame(frame, text="", padding=10)
-        buttons_frame.grid(row=1, column=0, columnspan=2, pady=20, padx=20, sticky="nsew")
+        buttons_frame.grid(row=2, column=0, columnspan=2, pady=20, padx=20, sticky="nsew")
         buttons_frame.columnconfigure(0, weight=1)
         buttons_frame.columnconfigure(1, weight=1)
 
         # Botón para registrar un nuevo cliente
         register_client_button = ttk.Button(buttons_frame, text="Registrar Cliente",
                                             command=self.open_client_registration)
-        register_client_button.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
+        register_client_button.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
 
         # Botón para registrar un nuevo emprendedor
         register_entrepreneur_button = ttk.Button(buttons_frame, text="Registrar Emprendedor",
                                                   command=self.open_entrepreneur_registration)
-        register_entrepreneur_button.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
+        register_entrepreneur_button.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
 
         # Botón para ver la lista de clientes
         view_clients_button = ttk.Button(buttons_frame, text="Ver Clientes", command=self.view_clients)
-        view_clients_button.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
+        view_clients_button.grid(row=2, column=0, padx=10, pady=10, sticky="nsew")
 
         # Botón para ver la lista de emprendedores
         view_entrepreneurs_button = ttk.Button(buttons_frame, text="Ver Emprendedores", command=self.view_entrepreneurs)
-        view_entrepreneurs_button.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
+        view_entrepreneurs_button.grid(row=2, column=1, padx=10, pady=10, sticky="nsew")
 
         cambiar_button = ttk.Button(buttons_frame, text="Cambiar cliente a emprendedor", command=self.cambiarClienteEmprendedor)
-        cambiar_button.grid(row=2, column=0, columnspan=2, pady=10, sticky="nsew")
+        cambiar_button.grid(row=3, column=0, columnspan=2, pady=10, sticky="nsew")
 
         # Botón para modificar la información
         modify_info_button = ttk.Button(buttons_frame, text="Modificar Información", command=self.modify_info)
-        modify_info_button.grid(row=3, column=0, columnspan=2, pady=10, sticky="nsew")
+        modify_info_button.grid(row=4, column=0, columnspan=2, pady=10, sticky="nsew")
 
         # Botón para cerrar la sesión
         logout_button = ttk.Button(buttons_frame, text="Cerrar Sesión", command=self.logout)
-        logout_button.grid(row=4, column=0, columnspan=2, pady=10, sticky="nsew")
+        logout_button.grid(row=5, column=0, columnspan=2, pady=10, sticky="nsew")
 
         # Configurar las columnas y filas para hacer que la interfaz sea responsiva
         frame.columnconfigure(0, weight=1)

@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, Label, messagebox
 import mysql.connector
 from PIL import ImageTk, Image
 
@@ -37,14 +37,22 @@ class ModifyClientInfoWindow:
         frame = tk.Frame(root, bg=color_frame, bd=5)
         frame.pack(fill="both", expand=True)
 
+        imagenImportada = Image.open("LogoB.png")
+        imagenRedimensionada = imagenImportada.resize((128, 64), Image.BILINEAR)
+        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
+        # Etiqueta contenedora de Logo
+        etiqueta_logo = Label(frame, image=imagen_Logo, bg='WHITE')
+        etiqueta_logo.noMeBorresCrack = imagen_Logo
+        etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
+
         # Etiqueta para el título de la ventana de modificación de cliente
         title_label = ttk.Label(frame, text="Modificar Información del Cliente", background=color_frame,
                                 foreground=color_label, font=("Helvetica", 16), anchor="center", justify="center")
-        title_label.grid(row=0, column=0, columnspan=2, padx=10, pady=10)
+        title_label.grid(row=1, column=0, columnspan=2, padx=10, pady=10)
 
         # Etiqueta para seleccionar al cliente a modificar
         select_label = ttk.Label(frame, text="Selecciona al Cliente:", background=color_frame, foreground=color_label)
-        select_label.grid(row=1, column=0, padx=10, pady=5, sticky="w")
+        select_label.grid(row=2, column=0, padx=10, pady=5, sticky="w")
 
         self.client_names = []
 
@@ -75,40 +83,40 @@ class ModifyClientInfoWindow:
         # self.client_names = []  # Lista para almacenar nombres de clientes
         self.selected_client = tk.StringVar()
         self.client_dropdown = ttk.Combobox(frame, textvariable=self.selected_client, values=self.client_names)
-        self.client_dropdown.grid(row=1, column=1, padx=10, pady=5)
+        self.client_dropdown.grid(row=2, column=1, padx=10, pady=5)
 
         # Botón para cargar la información del cliente seleccionado
         load_button = ttk.Button(frame, text="Cargar Información", command=self.load_client_info, style="TButton")
-        load_button.grid(row=1, column=2, padx=10, pady=5)
+        load_button.grid(row=2, column=2, padx=10, pady=5)
 
         # Campos de entrada para editar la información del cliente
         name_label = ttk.Label(frame, text="Nombre:", background=color_frame, foreground=color_label)
-        name_label.grid(row=2, column=0, padx=10, pady=5, sticky="w")
+        name_label.grid(row=3, column=0, padx=10, pady=5, sticky="w")
 
         self.name_entry = ttk.Entry(frame)
-        self.name_entry.grid(row=2, column=1, padx=10, pady=5)
+        self.name_entry.grid(row=3, column=1, padx=10, pady=5)
 
         last_name_label = ttk.Label(frame, text="Apellido:", background=color_frame, foreground=color_label)
-        last_name_label.grid(row=3, column=0, padx=10, pady=5, sticky="w")
+        last_name_label.grid(row=4, column=0, padx=10, pady=5, sticky="w")
 
         self.last_name_entry = ttk.Entry(frame)
-        self.last_name_entry.grid(row=3, column=1, padx=10, pady=5)
+        self.last_name_entry.grid(row=4, column=1, padx=10, pady=5)
 
         direccion_label = ttk.Label(frame, text="Dirección:", background=color_frame, foreground=color_label)
-        direccion_label.grid(row=4, column=0, padx=10, pady=5, sticky="w")
+        direccion_label.grid(row=5, column=0, padx=10, pady=5, sticky="w")
 
         self.direccion_entry = ttk.Entry(frame)
-        self.direccion_entry.grid(row=4, column=1, padx=10, pady=5)
+        self.direccion_entry.grid(row=5, column=1, padx=10, pady=5)
 
         regimen_label = ttk.Label(frame, text="Régimen Fiscal:", background=color_frame, foreground=color_label)
-        regimen_label.grid(row=5, column=0, padx=10, pady=5, sticky="w")
+        regimen_label.grid(row=6, column=0, padx=10, pady=5, sticky="w")
 
         self.regimen_entry = ttk.Entry(frame)
-        self.regimen_entry.grid(row=5, column=1, padx=10, pady=5)
+        self.regimen_entry.grid(row=6, column=1, padx=10, pady=5)
 
         # Botón para aplicar los cambios y guardar la información del cliente
         save_button = ttk.Button(frame, text="Guardar Cambios", command=self.save_client_info, style="TButton")
-        save_button.grid(row=6, column=0, columnspan=2, padx=10, pady=10)
+        save_button.grid(row=7, column=0, columnspan=2, padx=10, pady=10)
 
         # Deshabilitar la edición de los campos por defecto
         self.toggle_editing()

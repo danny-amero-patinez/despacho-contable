@@ -1,6 +1,8 @@
 import tkinter as tk
-import tkinter as tkk
-import tkinter as messagebox
+# import tkinter as tkk
+# import tkinter as messagebox
+from tkinter import Label, messagebox
+from PIL import ImageTk, Image
 
 class AtencionesEmprendedor:
     def __init__(self, root):
@@ -26,6 +28,14 @@ class AtencionesEmprendedor:
 
         marco = tk.Frame(root, padx=40, pady=30, bg=colormarco)
         marco.pack(expand=True, fill="both")
+
+        imagenImportada = Image.open("LogoB.png")
+        imagenRedimensionada = imagenImportada.resize((128, 64), Image.BILINEAR)
+        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
+        # Etiqueta contenedora de Logo
+        etiqueta_logo = Label(marco, image=imagen_Logo, bg='WHITE')
+        etiqueta_logo.noMeBorresCrack = imagen_Logo
+        etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
 
         atencionesLabel = tk.Label(marco, text="Atenciones a emprendedores", bg=colormarco, fg=colorletra, font=("arial", 14))
         atencionesLabel.grid(row=1, columns=1, sticky="w", padx=100, pady=10)

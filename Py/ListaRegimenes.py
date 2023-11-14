@@ -31,8 +31,8 @@ class Listaregimenes:
         frame = tk.Frame(root, bg=color_frame, bd=5)
         frame.grid(row=0, column=0, sticky="nsew")
         
-        imagenImportada = Image.open("Logo 1.png")
-        imagenRedimensionada = imagenImportada.resize((128,128), Image.BILINEAR)
+        imagenImportada = Image.open("LogoB.png")
+        imagenRedimensionada = imagenImportada.resize((128,64), Image.BILINEAR)
         imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
         
         etiqueta_logo = Label(frame, image= imagen_Logo, bg='WHITE')

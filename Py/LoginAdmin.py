@@ -48,7 +48,7 @@ class AdminLoginApp:
         title_label.grid(row=0, column=0, columnspan=2, pady=20)  # Alineación arriba
 
         # Importacion de la imagen
-        imagenImportada = Image.open("Logo 1.png")
+        imagenImportada = Image.open("Logo1.png")
         imagenRedimensionada = imagenImportada.resize((100,100), Image.BILINEAR)
         imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
 

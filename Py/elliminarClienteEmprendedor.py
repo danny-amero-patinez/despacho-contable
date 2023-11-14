@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from tkinter import messagebox
+from tkinter import Label, messagebox
 from PIL import ImageTk, Image
 
 cliente = []
@@ -30,6 +30,14 @@ class eliminarClienteEmprendedor:
 
         marco = tk.Frame(root, padx=40, pady=30, bg=colormarco)
         marco.pack(expand=True, fill="both")
+
+        imagenImportada = Image.open("LogoB.png")
+        imagenRedimensionada = imagenImportada.resize((128, 64), Image.BILINEAR)
+        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
+        # Etiqueta contenedora de Logo
+        etiqueta_logo = Label(marco, image=imagen_Logo, bg='WHITE')
+        etiqueta_logo.noMeBorresCrack = imagen_Logo
+        etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
 
         atencionesLabel = tk.Label(marco, text="Eliminar cliente o emprendedor", bg=colormarco, fg=colorletra, font=("arial", 14))
         atencionesLabel.grid(row=1, columns=1, sticky="w", padx=80, pady=10)

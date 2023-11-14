@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, Text, END, messagebox, StringVar
+from tkinter import ttk, Text, END, Label, messagebox, StringVar
 import mysql.connector
 from PIL import ImageTk, Image
 
@@ -31,23 +31,31 @@ class AgentListApp:
         frame = tk.Frame(root, bg=color_frame, bd=5)
         frame.grid(row=0, column=0, sticky="nsew")
 
+        imagenImportada = Image.open("LogoB.png")
+        imagenRedimensionada = imagenImportada.resize((128, 64), Image.BILINEAR)
+        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
+        # Etiqueta contenedora de Logo
+        etiqueta_logo = Label(frame, image=imagen_Logo, bg='WHITE')
+        etiqueta_logo.noMeBorresCrack = imagen_Logo
+        etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
+
         # Etiqueta de título
         title_label = tk.Label(frame, text="Lista de Agentes", font=("Helvetica", 20), bg=color_frame, fg=color_label)
-        title_label.grid(row=0, column=0, columnspan=2, pady=(20, 30))
+        title_label.grid(row=1, column=0, columnspan=2, pady=(20, 30))
 
         # Widget de texto para mostrar la lista de agentes
         self.agent_list_text = Text(frame, bg=color_frame, fg=color_button_text)
-        self.agent_list_text.grid(row=1, column=0, columnspan=2, sticky="nsew")
+        self.agent_list_text.grid(row=2, column=0, columnspan=2, sticky="nsew")
 
         # Botón para cargar la lista de agentes
         load_button = ttk.Button(frame, text="Cargar Agentes", command=self.load_agents, style="Custom.TButton")
-        load_button.grid(row=2, column=0, columnspan=2, pady=10, padx=20, sticky="nsew")
+        load_button.grid(row=3, column=0, columnspan=2, pady=10, padx=20, sticky="nsew")
 
         # Botón para mostrar/ocultar contraseñas
         self.show_passwords = StringVar()
         show_passwords_button = ttk.Checkbutton(frame, text="Mostrar Contraseñas", variable=self.show_passwords,
                                                 command=self.toggle_password_visibility)
-        show_passwords_button.grid(row=3, column=0, columnspan=2, pady=10, padx=20, sticky="nsew")
+        show_passwords_button.grid(row=4, column=0, columnspan=2, pady=10, padx=20, sticky="nsew")
 
         # Cargar el estilo personalizado para los botones
         s = ttk.Style()
@@ -90,9 +98,9 @@ class AgentListApp:
 
             for row in records:
                 row = str("ID del Agente = " + str(row[0]) +
-                          "\n" + "Nombre Completo = " + row[1] +
+                          "\n" + "Nombre Completo = " + str(row[1]) +
                           "\n" + "Usuario = " + row[2] +
-                          "\n" + "Contraseña = " + "*" * len(row[3]) if not self.show_passwords.get() else row[3] +
+                          "\n" + "Contraseña = " + ("*" * len(row[3]) if not self.show_passwords.get() else row[3]) +
                           "\n" + "RFC = " + row[4] +
                           "\n" + "NSS = " + row[5] +
                           "\n" + "observaciones = " + row[6] +

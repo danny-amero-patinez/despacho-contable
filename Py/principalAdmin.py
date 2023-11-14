@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import Label, messagebox
 from tkinter import ttk
 from NuevoAgente import AgenteApp
 from RegimenesFiscales import RegimenesFiscales
@@ -16,7 +16,7 @@ class PrincipalAdmin:
         self.root.title("Pantalla de Inicio")
 
         window_width = 400
-        window_height = 400
+        window_height = 550
 
         screen_width = root.winfo_screenwidth()
         screen_height = root.winfo_screenheight()
@@ -42,32 +42,40 @@ class PrincipalAdmin:
         frame.rowconfigure(0, weight=1)
         frame.rowconfigure(1, weight=1)
 
+        imagenImportada = Image.open("Logo1.png")
+        imagenRedimensionada = imagenImportada.resize((120, 120), Image.BILINEAR)
+        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
+        # Etiqueta contenedora de Logo
+        etiqueta_logo = Label(frame, image=imagen_Logo, bg='WHITE')
+        etiqueta_logo.noMeBorresCrack = imagen_Logo
+        etiqueta_logo.grid(row=0, column=0, padx=0, pady=10)
+
         title_label = tk.Label(frame, text="Bienvenido", font=("Helvetica", 20), bg=color_frame, fg=color_label)
-        title_label.grid(row=0, column=0, columnspan=2, pady=(20, 30))
+        title_label.grid(row=1, column=0, columnspan=2, pady=(20, 30))
 
         buttons_frame = ttk.LabelFrame(frame, text="", padding=10)
-        buttons_frame.grid(row=1, column=0, columnspan=2, pady=20, padx=20, sticky="nsew")
+        buttons_frame.grid(row=2, column=0, columnspan=2, pady=20, padx=20, sticky="nsew")
         buttons_frame.columnconfigure(0, weight=1)
         buttons_frame.columnconfigure(1, weight=1)
 
         register_client_button = ttk.Button(buttons_frame, text="Registrar Agentes", command=self.open_registrar_agente)
-        register_client_button.grid(row=0, column=0, padx=10, pady=10, sticky="nsew")
+        register_client_button.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
 
         registrar_regimen_boton = ttk.Button(buttons_frame, text="Agregar regimen fiscal",
                                              command=self.open_registrar_regimen)
-        registrar_regimen_boton.grid(row=0, column=1, padx=10, pady=10, sticky="nsew")
+        registrar_regimen_boton.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
 
         view_clients_button = ttk.Button(buttons_frame, text="Ver Agentes", command=self.open_agent_list)
-        view_clients_button.grid(row=1, column=0, padx=10, pady=10, sticky="nsew")
+        view_clients_button.grid(row=2, column=0, padx=10, pady=10, sticky="nsew")
 
         regimen_boton = ttk.Button(buttons_frame, text="Ver regimenes fiscales", command=self.ver_regimenes)
-        regimen_boton.grid(row=1, column=1, padx=10, pady=10, sticky="nsew")
+        regimen_boton.grid(row=2, column=1, padx=10, pady=10, sticky="nsew")
 
         modify_info_button = ttk.Button(buttons_frame, text="Modificar Información de agentes", command=self.open_modificar_agente)
-        modify_info_button.grid(row=2, column=0, columnspan=2, pady=10, sticky="nsew")
+        modify_info_button.grid(row=3, column=0, columnspan=2, pady=10, sticky="nsew")
 
         logout_button = ttk.Button(buttons_frame, text="Cerrar Sesión", command=self.logout)
-        logout_button.grid(row=3, column=0, columnspan=2, pady=10, sticky="nsew")
+        logout_button.grid(row=4, column=0, columnspan=2, pady=10, sticky="nsew")
 
         frame.columnconfigure(0, weight=1)
         frame.columnconfigure(1, weight=1)

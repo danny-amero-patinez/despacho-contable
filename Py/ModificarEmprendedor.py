@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import ttk, messagebox
+from tkinter import ttk, Label, messagebox
 import mysql.connector
 from PIL import ImageTk, Image
 class ModificarEmprendedor:
@@ -28,6 +28,14 @@ class ModificarEmprendedor:
 
         marco = tk.Frame(root, bd=5, bg=colormarco)
         marco.pack(expand=True, fill="both")
+
+        imagenImportada = Image.open("LogoB.png")
+        imagenRedimensionada = imagenImportada.resize((128, 64), Image.BILINEAR)
+        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
+        # Etiqueta contenedora de Logo
+        etiqueta_logo = Label(marco, image=imagen_Logo, bg='WHITE')
+        etiqueta_logo.noMeBorresCrack = imagen_Logo
+        etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
 
         titulolabel = tk.Label(marco, text="Modificar informacion del emprendedor", bg=colormarco, fg=colorletra, font=("Helvetica", 16))
         titulolabel.grid(row=1, column=1, padx=10, pady=10, sticky="w")
@@ -99,7 +107,7 @@ class ModificarEmprendedor:
         save_button.grid(row=7, column=0, columnspan=2, padx=10, pady=10)
 
         cargar_info = ttk.Button(marco, text="Cargar Informacion", command=self.cargarInformacion, style="TButton")
-        cargar_info.grid(row=1, column=2, padx=10, pady=5)
+        cargar_info.grid(row=2, column=2, padx=10, pady=5)
 
         # Deshabilitar la edición de los campos por defecto
     #    self.toggle_editing()

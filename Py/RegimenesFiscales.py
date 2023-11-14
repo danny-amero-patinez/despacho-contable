@@ -30,37 +30,36 @@ class RegimenesFiscales:
         frame.pack(expand=True, fill="both")
         
         # Importacion de la imagen y redimensionamiento
-        imagenImportada = Image.open("Logo 1.png")
-        imagenRedimensionada = imagenImportada.resize((128,128), Image.BILINEAR)
+        imagenImportada = Image.open("LogoB.png")
+        imagenRedimensionada = imagenImportada.resize((128,64), Image.BILINEAR)
         imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
         # Etiqueta contenedora de Logo
         etiqueta_logo = Label(frame, image= imagen_Logo, bg='WHITE')
         etiqueta_logo.noMeBorresCrack= imagen_Logo
         etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
-        
 
         idRegimenLabel = tk.Label(frame, text="ID del Régimen:", bg=colorMarco, fg=colorLabel)
-        idRegimenLabel.grid(row=1, column=0, sticky="w", padx=(0, 10), pady=(0, 10))
+        idRegimenLabel.grid(row=1, column=0, sticky="w", padx=(0, 10), pady=(30, 10))
 
         self.Idlabel = tk.Label(frame, bg=colorMarco, fg=colorLabel)
-        self.Idlabel.grid(row=1, column=1, sticky="w", pady=(0, 10))
+        self.Idlabel.grid(row=1, column=1, sticky="w", pady=(30, 10))
 
         regimenLabel = tk.Label(frame, text="Escribir Régimen:", bg=colorMarco, fg=colorLabel)
-        regimenLabel.grid(row=2, column=0, sticky="w", padx=(0, 10), pady=(0, 10))
+        regimenLabel.grid(row=2, column=0, sticky="w", padx=(0, 10), pady=(10, 10))
 
         self.regimen = tk.Entry(frame)
-        self.regimen.grid(row=2, column=1, sticky="w", ipadx=50, pady=(0, 10))
+        self.regimen.grid(row=2, column=1, sticky="w", ipadx=50, pady=(10, 10))
 
         idBoton = tk.Button(frame, text="Generar ID", command=self.botonid, bg=colorBoton, fg=colorTextoBoton)
-        idBoton.grid(row=1, column=2, pady=(0, 10), padx=(10, 0))
+        idBoton.grid(row=1, column=2, pady=(30, 10), padx=(10, 0))
 
         registrarBoton = tk.Button(frame, text="Registrar Régimen", command=self.registroRegimen, bg=colorBoton,
                                    fg=colorTextoBoton)
-        registrarBoton.grid(row=3, column=1, pady=(20, 30))
+        registrarBoton.grid(row=3, column=1, pady=(50, 30))
 
         eliminarBoton = tk.Button(frame, text="Eliminar Régimen", command=self.eliminarRegimen, bg=colorBoton,
                                   fg=colorTextoBoton)
-        eliminarBoton.grid(row=4, column=1, pady=(0, 20))
+        eliminarBoton.grid(row=4, column=1, pady=(10, 20))
 
     def botonid(self):
         resultadoId = random.randint(1, 99)

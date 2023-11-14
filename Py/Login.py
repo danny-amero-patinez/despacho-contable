@@ -49,13 +49,13 @@ class LoginApp:
         marco.rowconfigure(3, weight=1)
         marco.rowconfigure(4, weight=1)
         # Importacion de la imagen y redimensionamiento
-        imagenImportada = Image.open("Logo 1.png")
-        imagenRedimensionada = imagenImportada.resize((128,128), Image.BILINEAR)
+        imagenImportada = Image.open("Logo1.png")
+        imagenRedimensionada = imagenImportada.resize((120,120), Image.BILINEAR)
         imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
         # Etiqueta contenedora de Logo
         etiqueta_logo = Label(marco, image= imagen_Logo, bg='WHITE')
         etiqueta_logo.noMeBorresCrack= imagen_Logo
-        etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
+        etiqueta_logo.grid(row=0, column=0, padx=0, pady=10)
         
         # Etiqueta de título
         etiqueta_titulo = tk.Label(marco, text="Despacho Contable", font=fuente_personalizada, fg=color_etiqueta, 

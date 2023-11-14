@@ -10,7 +10,7 @@ class ModificarAgenteApp:
 
         # Conexión a la base de datos
         self.connection = mysql.connector.connect(host='localhost', database='lion', user='root',
-                                                  password='panconl3ch3')
+                                                  password='panconl3ch3.')
 
         # Datos simulados para los agentes (deberías cargar los datos reales desde la base de datos)
         self.agentes = self.get_agentes_from_database()

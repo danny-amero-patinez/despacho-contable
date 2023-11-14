@@ -76,7 +76,7 @@ class AtencionesCliente:
         registrarAtencionBoton.grid(row=10, columnspan=1, sticky="w", padx=130, pady=5)
 
     def registrarAtencion(self):
-        messagebox.showinfo("Registro de atencion al cliente, registrado", message)
+        messagebox.showinfo("Registro de atencion al cliente, registrado", messagebox)
             
 
 if __name__ == "__main__":

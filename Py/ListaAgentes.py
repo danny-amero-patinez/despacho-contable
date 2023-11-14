@@ -78,7 +78,7 @@ class AgentListApp:
             connection = mysql.connector.connect(host='localhost',
                                                  database='lion',
                                                  user='root',
-                                                 password='panconl3ch3')
+                                                 password='panconl3ch3.')
 
             sql_select_Query = "select * from clientes"
             cursor = connection.cursor()

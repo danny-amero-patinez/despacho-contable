@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from ModCliente import (ModifyClientInfoWindow)
-from ModificarEmprendedor import (ModificarrEmprendedor)
+from ModificarEmprendedor import (ModificarEmprendedor)
 from PIL import ImageTk, Image
 
 # Clase para la ventana principal
@@ -60,7 +60,7 @@ class ModifyInfoWindow:
 
     def modificar_emprededor_info(self):
         emprendedor_window = tk.Toplevel(self.root)
-        ModificarrEmprendedor(emprendedor_window)
+        ModificarEmprendedor(emprendedor_window)
         emprendedor_window.transient(self.root)
         emprendedor_window.grab_set()
         emprendedor_window.wait_window()

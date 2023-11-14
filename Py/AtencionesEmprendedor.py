@@ -71,7 +71,7 @@ class AtencionesEmprendedor:
 
 
     def registrarAtencion(self):
-        messagebox.showinfo("registro de atencion al emprendedor, registrado", message)
+        messagebox.showinfo("registro de atencion al emprendedor, registrado", messagebox)
 
 
 

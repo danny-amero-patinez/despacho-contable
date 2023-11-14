@@ -3,6 +3,7 @@ from tkinter import ttk, Text, END, messagebox
 import mysql.connector
 from PIL import ImageTk, Image
 
+
 class EntrepreneurListApp:
     def __init__(self, root):
         self.root = root
@@ -40,7 +41,8 @@ class EntrepreneurListApp:
         self.entrepreneurs_text.grid(row=1, column=0, columnspan=2, sticky="nsew")
 
         # Botón para cargar la lista de emprendedores
-        load_button = ttk.Button(frame, text="Cargar Emprendedores", command=self.load_entrepreneurs, style="Custom.TButton")
+        load_button = ttk.Button(frame, text="Cargar Emprendedores", command=self.load_entrepreneurs,
+                                 style="Custom.TButton")
         load_button.grid(row=2, column=0, columnspan=2, pady=10, padx=20, sticky="nsew")
 
         # Cargar el estilo personalizado para los botones
@@ -72,9 +74,9 @@ class EntrepreneurListApp:
 
         try:
             connection = mysql.connector.connect(host='localhost',
-                                                 database='?',
+                                                 database='lion',
                                                  user='root',
-                                                 password='?')
+                                                 password='panconl3ch3.')
 
             sql_select_Query = "select * from emprendedores"
             cursor = connection.cursor()
@@ -89,11 +91,11 @@ class EntrepreneurListApp:
 
             for row in records:
                 row2 = str("Id del cliente = " + str(row[0]) +
-                          "\n" + "Fecha = " + str(row[1]) +
-                          "\n" + "Nombre del proyecto = " + row[8] +
-                          "\n" + "Regimen = " + row[11] +
-                          "\n" + "Direccion = " + row[12] +
-                          "\n" + "Giro = " + row[13] + "\n\n\n")
+                           "\n" + "Fecha = " + str(row[1]) +
+                           "\n" + "Nombre del proyecto = " + row[8] +
+                           "\n" + "Regimen = " + row[11] +
+                           "\n" + "Direccion = " + row[12] +
+                           "\n" + "Giro = " + row[13] + "\n\n\n")
 
                 query += row2
 
@@ -109,12 +111,12 @@ class EntrepreneurListApp:
                 # print("MySQL connection is closed")
 
         # try:
-            # with open("emprendedores.txt", "r") as file:
-                # entrepreneurs_data = file.read()
-                # self.entrepreneurs_text.delete(1.0, END)  # Limpiar el widget de texto
-                # self.entrepreneurs_text.insert(END, entrepreneurs_data)
+        # with open("emprendedores.txt", "r") as file:
+        # entrepreneurs_data = file.read()
+        # self.entrepreneurs_text.delete(1.0, END)  # Limpiar el widget de texto
+        # self.entrepreneurs_text.insert(END, entrepreneurs_data)
         # except FileNotFoundError:
-            # messagebox.showerror("Error", "El archivo emprendedores.txt no existe.")
+        # messagebox.showerror("Error", "El archivo emprendedores.txt no existe.")
 
 
 if __name__ == "__main__":

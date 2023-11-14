@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 from PIL import ImageTk, Image
+from principalAdmin import PrincipalAdmin
 
 class AdminLoginApp:
     def __init__(self, root):
@@ -91,11 +92,11 @@ class AdminLoginApp:
 
         # Crear una nueva ventana para la página principal
         root = tk.Tk()
-        from PrincipalAdmin import principalAdmin
-        principalAdmin(root)
+        from principalAdmin import PrincipalAdmin
+        PrincipalAdmin(root)
         root.mainloop()
 
     if __name__ == "__main__":
         root = tk.Tk()
-        app = principalAdmin(root)
+        app = PrincipalAdmin(root)
         root.mainloop()

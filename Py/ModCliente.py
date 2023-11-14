@@ -52,7 +52,7 @@ class ModifyClientInfoWindow:
             connection = mysql.connector.connect(host='localhost',
                                                  database='lion',
                                                  user='root',
-                                                 password='?')
+                                                 password='panconl3ch3.')
 
             sql_select_Query = "select NombresCompletos from clientes"
             cursor = connection.cursor()

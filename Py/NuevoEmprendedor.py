@@ -129,7 +129,7 @@ class AddEntrepreneur:
             connection = mysql.connector.connect(host='localhost',
                                                  database='lion',
                                                  user='root',
-                                                 password='panconl3ch3')
+                                                 password='panconl3ch3.')
             cursor = connection.cursor()
             mySql_insert_query = """INSERT INTO emprendedores (
             NombresCompletos, NombreNegocio, Celular1, Celular2, Telefono1, Correo1,

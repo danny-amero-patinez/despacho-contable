@@ -70,8 +70,8 @@ class RegimenesFiscales:
         conexion = mysql.connector.connect(
             host='localhost',
             user='root',
-            password='<password>',
-            database='<database>'
+            password='<panconl3ch3.>',
+            database='<lion>'
         )
 
         cursor = conexion.cursor()

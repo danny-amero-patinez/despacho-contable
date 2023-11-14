@@ -42,7 +42,7 @@ class ModificarEmprendedor:
             connection = mysql.connector.connect(host='localhost',
                                                  database='lion',
                                                  user='root',
-                                                 password='?')
+                                                 password='panconl3ch3.')
 
             sql_select_Query = "select NombreProyecto from emprendedores"
             cursor = connection.cursor()
@@ -128,7 +128,7 @@ class ModificarEmprendedor:
                 connection = mysql.connector.connect(host='localhost',
                                                      database='lion',
                                                      user='root',
-                                                     password='panconl3ch3')
+                                                     password='panconl3ch3.')
 
                 sql_select_Query = "select * from emprendedores where NombreProyecto = %s"
 

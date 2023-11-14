@@ -80,9 +80,9 @@ class ClientListApp:
 
         try:
             connection = mysql.connector.connect(host='localhost',
-                                                 database='?',
+                                                 database='lion',
                                                  user='root',
-                                                 password='?')
+                                                 password='panconl3ch3.')
 
             sql_select_Query = "select * from clientes"
             cursor = connection.cursor()

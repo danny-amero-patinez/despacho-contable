@@ -1,13 +1,13 @@
--- MariaDB dump 10.19  Distrib 10.4.28-MariaDB, for Win64 (AMD64)
+-- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: lion
 -- ------------------------------------------------------
--- Server version	10.4.28-MariaDB
+-- Server version	8.0.34
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -16,35 +16,58 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `administrador`
+--
+
+DROP TABLE IF EXISTS `administrador`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `administrador` (
+  `nombre` varchar(20) DEFAULT NULL,
+  `password` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `administrador`
+--
+
+LOCK TABLES `administrador` WRITE;
+/*!40000 ALTER TABLE `administrador` DISABLE KEYS */;
+INSERT INTO `administrador` VALUES ('Admin','elp4n4d3r0');
+/*!40000 ALTER TABLE `administrador` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `agentes`
 --
 
 DROP TABLE IF EXISTS `agentes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `agentes` (
-  `idAgente` int(11) NOT NULL AUTO_INCREMENT,
-  `Fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `NombresCompletos` varchar(255) DEFAULT NULL,
-  `Password` varchar(255) DEFAULT NULL,
-  `NivelDeEstudios` varchar(255) DEFAULT NULL,
-  `NombreEscuela` varchar(255) DEFAULT NULL,
-  `EstadoDeSalud` varchar(255) DEFAULT NULL,
-  `Enfermedades` varchar(255) DEFAULT NULL,
-  `ConsumoSustancias` varchar(255) DEFAULT NULL,
-  `AntiguosEmpleos` varchar(255) DEFAULT NULL,
-  `Edad` int(11) DEFAULT NULL,
-  `Celular1` varchar(255) DEFAULT NULL,
-  `Celular2` varchar(255) DEFAULT NULL,
-  `Correo1` varchar(255) DEFAULT NULL,
-  `Correo2` varchar(255) DEFAULT NULL,
-  `Direccion` varchar(255) DEFAULT NULL,
-  `Observaciones` varchar(255) DEFAULT NULL,
-  `Activo` int(11) DEFAULT NULL,
-  `NombreContacto` varchar(255) DEFAULT NULL,
-  `Hobbies` varchar(255) DEFAULT NULL,
+  `idAgente` int NOT NULL AUTO_INCREMENT,
+  `Fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `NombresCompletos` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `NivelDeEstudios` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `NombreEscuela` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `EstadoDeSalud` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Enfermedades` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `ConsumoSustancias` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `AntiguosEmpleos` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Edad` int DEFAULT NULL,
+  `Celular1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Celular2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Correo1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Correo2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Direccion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Observaciones` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Activo` int DEFAULT NULL,
+  `NombreContacto` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Hobbies` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`idAgente`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -53,6 +76,7 @@ CREATE TABLE `agentes` (
 
 LOCK TABLES `agentes` WRITE;
 /*!40000 ALTER TABLE `agentes` DISABLE KEYS */;
+INSERT INTO `agentes` VALUES (1,'2023-11-14 00:10:28','Ivan Hernandez','password1234','Prepa trunca','Esteban','Con la muñeca fracturada','Espero que ninguna','Se ve','Panadero',30,'?','?','?','?','Enrique Segobiano','?',1,'Ivan','?');
 /*!40000 ALTER TABLE `agentes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -62,17 +86,17 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `asesorias`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `asesorias` (
-  `idAsesoria` int(11) NOT NULL AUTO_INCREMENT,
-  `Fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `NombreDelCliente` varchar(255) DEFAULT NULL,
-  `Ocupacion` varchar(255) DEFAULT NULL,
-  `Celular` varchar(255) DEFAULT NULL,
-  `TemaAsesoria` varchar(255) DEFAULT NULL,
-  `idAgente` int(11) DEFAULT NULL,
-  `NombreAgente` varchar(255) DEFAULT NULL,
-  `Observaciones` varchar(255) DEFAULT NULL,
+  `idAsesoria` int NOT NULL AUTO_INCREMENT,
+  `Fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `NombreDelCliente` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Ocupacion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Celular` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `TemaAsesoria` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `idAgente` int DEFAULT NULL,
+  `NombreAgente` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Observaciones` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`idAsesoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -92,21 +116,21 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `atenciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `atenciones` (
-  `idAtencion` int(11) NOT NULL AUTO_INCREMENT,
-  `idCliente` int(11) DEFAULT NULL,
-  `ElaboradoPor` varchar(255) DEFAULT NULL,
-  `Cargo` varchar(255) DEFAULT NULL,
-  `Actividad` varchar(255) DEFAULT NULL,
-  `Fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `idNegocio` int(11) DEFAULT NULL,
-  `idOperacion` int(11) DEFAULT NULL,
-  `PropuestasYSoluciones` varchar(255) DEFAULT NULL,
-  `DetallesRelevantes` varchar(255) DEFAULT NULL,
-  `Proposito_objetivo` varchar(255) DEFAULT NULL,
-  `Conclusiones` varchar(255) DEFAULT NULL,
-  `Activo` int(11) DEFAULT NULL,
+  `idAtencion` int NOT NULL AUTO_INCREMENT,
+  `idCliente` int DEFAULT NULL,
+  `ElaboradoPor` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Cargo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Actividad` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `idNegocio` int DEFAULT NULL,
+  `idOperacion` int DEFAULT NULL,
+  `PropuestasYSoluciones` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `DetallesRelevantes` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Proposito_objetivo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Conclusiones` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Activo` int DEFAULT NULL,
   PRIMARY KEY (`idAtencion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -126,26 +150,26 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `clientes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `clientes` (
-  `idCliente` int(11) NOT NULL AUTO_INCREMENT,
-  `Fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `NombresCompletos` varchar(255) DEFAULT NULL,
-  `NombreNegocio` varchar(255) DEFAULT NULL,
-  `Celular1` varchar(255) DEFAULT NULL,
-  `Celular2` varchar(255) DEFAULT NULL,
-  `Telefono1` varchar(255) DEFAULT NULL,
-  `Correo1` varchar(255) DEFAULT NULL,
-  `Correo2` varchar(255) DEFAULT NULL,
-  `Ciudad` varchar(255) DEFAULT NULL,
-  `Direccion` varchar(255) DEFAULT NULL,
-  `Observaciones` varchar(255) DEFAULT NULL,
-  `RFC` varchar(255) DEFAULT NULL,
-  `Regimen` varchar(255) DEFAULT NULL,
-  `NSS` varchar(255) DEFAULT NULL,
-  `CP` varchar(255) DEFAULT NULL,
-  `OpinionDeCumplimiento` varchar(255) DEFAULT NULL,
-  `LicACargo` varchar(255) DEFAULT NULL,
+  `idCliente` int NOT NULL AUTO_INCREMENT,
+  `Fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `NombresCompletos` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `NombreNegocio` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Celular1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Celular2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Telefono1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Correo1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Correo2` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Ciudad` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Direccion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Observaciones` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `RFC` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Regimen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `NSS` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `CP` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `OpinionDeCumplimiento` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `LicACargo` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`idCliente`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -165,30 +189,30 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `emprendedores`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `emprendedores` (
-  `idClientes` int(11) NOT NULL AUTO_INCREMENT,
-  `Fecha` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `idCliente` int(11) DEFAULT NULL,
-  `idAgente` int(11) DEFAULT NULL,
-  `idEstado` int(11) DEFAULT NULL,
-  `idServicio` int(11) DEFAULT NULL,
-  `CapitalInicial` int(11) DEFAULT NULL,
-  `Activo` int(11) DEFAULT NULL,
-  `NombreProyecto` varchar(255) DEFAULT NULL,
-  `Pm` int(11) DEFAULT NULL,
-  `Pf` int(11) DEFAULT NULL,
-  `Regimen` varchar(255) DEFAULT NULL,
-  `Direccion` varchar(255) DEFAULT NULL,
-  `Giro` varchar(255) DEFAULT NULL,
-  `Producto` int(11) DEFAULT NULL,
-  `Servicio` int(11) DEFAULT NULL,
-  `Marketing` int(11) DEFAULT NULL,
-  `Gestion` int(11) DEFAULT NULL,
-  `EquipoTrabajo` int(11) DEFAULT NULL,
-  `NumeroTrabajadores` int(11) DEFAULT NULL,
-  `InovacionTecnologica` varchar(255) DEFAULT NULL,
-  `Observaciones` varchar(255) DEFAULT NULL,
+  `idClientes` int NOT NULL AUTO_INCREMENT,
+  `Fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `idCliente` int DEFAULT NULL,
+  `idAgente` int DEFAULT NULL,
+  `idEstado` int DEFAULT NULL,
+  `idServicio` int DEFAULT NULL,
+  `CapitalInicial` int DEFAULT NULL,
+  `Activo` int DEFAULT NULL,
+  `NombreProyecto` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Pm` int DEFAULT NULL,
+  `Pf` int DEFAULT NULL,
+  `Regimen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Direccion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Giro` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Producto` int DEFAULT NULL,
+  `Servicio` int DEFAULT NULL,
+  `Marketing` int DEFAULT NULL,
+  `Gestion` int DEFAULT NULL,
+  `EquipoTrabajo` int DEFAULT NULL,
+  `NumeroTrabajadores` int DEFAULT NULL,
+  `InovacionTecnologica` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Observaciones` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`idClientes`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -208,10 +232,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `estados`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `estados` (
-  `idEstado` int(11) NOT NULL AUTO_INCREMENT,
-  `Estado` varchar(255) DEFAULT NULL,
+  `idEstado` int NOT NULL AUTO_INCREMENT,
+  `Estado` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`idEstado`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -231,11 +255,11 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `operaciones`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `operaciones` (
-  `idOperacion` int(11) NOT NULL AUTO_INCREMENT,
-  `Operacion` varchar(255) DEFAULT NULL,
-  `Campo1` varchar(255) DEFAULT NULL,
+  `idOperacion` int NOT NULL AUTO_INCREMENT,
+  `Operacion` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `Campo1` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`idOperacion`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -255,10 +279,10 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `regimen`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `regimen` (
-  `idRegimen` int(11) NOT NULL AUTO_INCREMENT,
-  `Regimen` varchar(255) DEFAULT NULL,
+  `idRegimen` int NOT NULL AUTO_INCREMENT,
+  `Regimen` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`idRegimen`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -278,19 +302,14 @@ UNLOCK TABLES;
 
 DROP TABLE IF EXISTS `servicios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+/*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `servicios` (
-  `idServicios` int(11) NOT NULL AUTO_INCREMENT,
-  `Servicio` varchar(255) DEFAULT NULL,
+  `idServicios` int NOT NULL AUTO_INCREMENT,
+  `Servicio` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   PRIMARY KEY (`idServicios`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-
-/*insert into agentes(NombresCompletos, NivelDeEstudios, NombreEscuela, EstadoDeSalud, Enfermedades, ConsumoSustancias, AntiguosEmpleos, Edad, CElular1, Celular2, Corrreo1, Corrreo2, Direccion, Observaciones, Activo, NombreContacto, Hobbies) values ("Ivan Hernandez", "Prepa trunca", "Esteban", "Con la muñeca fracturada", "Espero que ninguna", "Se ve", "Panadero", 30, "?", "?", "?", "?", "Enrique Segobiano", "?", 1, "Ivan", "?");
-
-
-SELECT NombresCompletos FROM agentes */
 --
 -- Dumping data for table `servicios`
 --
@@ -307,6 +326,6 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES 
--- Dump completed on 2023-10-17 16:30:55
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
+-- Dump completed on 2023-11-13 18:18:26

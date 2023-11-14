@@ -77,7 +77,7 @@ class AgenteApp:
 
     def insert_variables_into_table(self, v1, v2, v3, v4, v5, v6):
         try:
-            connection = mysql.connector.connect(host='localhost', database='lion', user='root', password='panconl3ch3')
+            connection = mysql.connector.connect(host='localhost', database='lion', user='root', password='panconl3ch3.')
             cursor = connection.cursor()
             mySql_insert_query = """INSERT INTO clientes (
                     NombresCompletos, NombreNegocio, Celular1, Celular2, Telefono1,

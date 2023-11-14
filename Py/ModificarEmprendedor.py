@@ -1,8 +1,8 @@
 import tkinter as tk
-from tkinter import ttk
+from tkinter import ttk, messagebox
 import mysql.connector
 from PIL import ImageTk, Image
-class ModificarrEmprendedor:
+class ModificarEmprendedor:
     def __init__(self, root):
         self.root = root
         self.root.title("Modificar informarcion del emprendedor")
@@ -128,7 +128,7 @@ class ModificarrEmprendedor:
                 connection = mysql.connector.connect(host='localhost',
                                                      database='lion',
                                                      user='root',
-                                                     password='?')
+                                                     password='panconl3ch3')
 
                 sql_select_Query = "select * from emprendedores where NombreProyecto = %s"
 
@@ -161,5 +161,5 @@ class ModificarrEmprendedor:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = ModificarrEmprendedor(root)
+    app = ModificarEmprendedor(root)
     root.mainloop()

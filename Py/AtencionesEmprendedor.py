@@ -1,6 +1,7 @@
 import tkinter as tk
 # import tkinter as tkk
 # import tkinter as messagebox
+import mysql.connector
 from tkinter import Label, messagebox
 from PIL import ImageTk, Image
 
@@ -80,7 +81,35 @@ class AtencionesEmprendedor:
         registrarAtencionBoton.grid(row=10, columnspan=1, sticky="w", padx=150, pady=5)
 
 
-    def registrarAtencion(self):
+    def registrarAtencion(self, v1,v2,v3,v4,v5,v6):
+        try:
+            conexion = mysql.connector.connect(
+                host='localhost',
+                user='root',
+                database='lion',
+                password='julianms3'
+            )
+
+            cursor = conexion.cursor()
+
+            mysql_insert_query = "INSERT INTO atenciones (idCliente, Fecha, DetallesRelevantes) VALUES (%s, %s, %s)" 
+            record = (v1, v2, "", "", "", "", "", v3, v4, v5, "", v6, "")
+            print(record)
+            cusor.exexute(mysql_insert_query, record)
+            #id_Atencion = self.id.get("text")
+            #Fecha = self.fecha.get()
+            #cursor.execute(mysql_insert_query, (id_Atencion, Fecha))
+
+            conexion.commit()
+            print("Record inserted successfully into agentes table")
+
+        except mysql.connector.Error as error:
+            print("Failed to insert into MySQL table {}".format(error))
+        finally:
+            if conexion.is_connected:
+                cursor.close()
+                conexion.close()
+
         messagebox.showinfo("Registro","registro de atencion al emprendedor, registrado")
 
 

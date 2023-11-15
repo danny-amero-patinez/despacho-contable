@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter.font import Font
 from PIL import ImageTk, Image
+import mysql.connector
 
 from NuevoCliente import AddClientApp
 #from Cliente import Cliente
@@ -63,6 +64,35 @@ class Cambiar:
         direccionLabel = tk.Label(marco, text="Direccion", bg=colorMarco, fg=colorLabel, font=("arial",11))
         direccionLabel.grid(row=8, column=1, sticky="w",pady=5, ipadx=70)
 
+        regimenLabel = tk.Label(marco, text="Regimen", bg=colorMarco, fg=colorLabel, font=("arial",11))
+        regimenLabel.grid(row=9, column=1, sticky="w", pady=5, ipadx=70)
+
+    #  def abrir(self):
+        conexion = mysql.connector.connect(
+            host='localhost',
+            user='root',
+            database='lion',
+            password='julianms3'
+            )
+
+        sql_select_Query = "select idCliente, NombreCompletos, NombreNegocio, Correo1, RFC, NSS, CP, Regimen from clientes"
+        cursor = conexion.cursor()
+        cursor.execute(sql_select_Query)
+        records = cursor.fetchall()
+           # sql="select idcliente, NombresCompletos Correo1, RFC, NSS, Direccion, regimen from clientes"
+           # cursor.execute(sql)
+           # return cursor.fetchall()
+
+           # cursor = conexion.cursor()
+
+           # consulta.execute("select * from clientes")
+
+       # except msql.connector.Error as e:
+       #   messagebox.showerror("Error", "Error reading data from MySQL table.")
+       # finally:
+       #     if conexion.is_connected():
+       #         conexion.close()
+       #         cursor.close()
 
       #  idLabel = tk.Label(marco, text=f"ID Cliente: {id}", bg=colorMarco, fg=colorLabel, font=letraLabel)
       #  idLabel.grid()

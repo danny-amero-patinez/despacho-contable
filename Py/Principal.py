@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk, Label, messagebox
+#import mysql.connection
 
 from NuevoCliente import AddClientApp
 from NuevoEmprendedor import AddEntrepreneur

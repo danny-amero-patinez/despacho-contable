@@ -31,13 +31,13 @@ class AgentListApp:
         frame = tk.Frame(root, bg=color_frame, bd=5)
         frame.grid(row=0, column=0, sticky="nsew")
 
-        imagenImportada = Image.open("LogoB.png")
-        imagenRedimensionada = imagenImportada.resize((128, 64), Image.BILINEAR)
-        imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
+        #imagenImportada = Image.open("Logo1.png")
+        #imagenRedimensionada = imagenImportada.resize((128, 64), Image.BILINEAR)
+        #imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
         # Etiqueta contenedora de Logo
-        etiqueta_logo = Label(frame, image=imagen_Logo, bg='WHITE')
-        etiqueta_logo.noMeBorresCrack = imagen_Logo
-        etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
+        #etiqueta_logo = Label(frame, image=imagen_Logo, bg='WHITE')
+        #etiqueta_logo.noMeBorresCrack = imagen_Logo
+        #etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
 
         # Etiqueta de título
         title_label = tk.Label(frame, text="Lista de Agentes", font=("Helvetica", 20), bg=color_frame, fg=color_label)

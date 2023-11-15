@@ -31,7 +31,7 @@ class AtencionesCliente:
         imagenImportada = Image.open("LogoB.png")
         imagenRedimensionada = imagenImportada.resize((128, 64), Image.BILINEAR)
         imagen_Logo = ImageTk.PhotoImage(imagenRedimensionada)
-        # Etiqueta contenedora de Logo
+     #   Etiqueta contenedora de Logo
         etiqueta_logo = Label(marco, image=imagen_Logo, bg='WHITE')
         etiqueta_logo.noMeBorresCrack = imagen_Logo
         etiqueta_logo.grid(row=0, column=0, padx=10, pady=10)
@@ -86,7 +86,7 @@ class AtencionesCliente:
         registrarAtencionBoton.grid(row=10, columnspan=1, sticky="w", padx=130, pady=5)
 
     def registrarAtencion(self):
-        messagebox.showinfo("Registro de atencion al cliente, registrado", messagebox)
+        messagebox.showinfo("Registro", "Registro de atencion al cliente, registrado")
             
 
 if __name__ == "__main__":

@@ -12,7 +12,7 @@ class ModifyInfoWindow:
 
         # Tamaño de la ventana principal
         window_width = 400
-        window_height = 250
+        window_height = 300
 
         # Obtener el ancho y alto de la pantalla
         screen_width = root.winfo_screenwidth()
@@ -58,6 +58,9 @@ class ModifyInfoWindow:
         emprendedor_boton = ttk.Button(frame, text="Modificar Informacion del emprendedor", command=self.modificar_emprededor_info, style="TButton")
         emprendedor_boton.grid(row=3, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
 
+        agente_boton = ttk.Button(frame, text="Modificar Informacion del agente", command=self.modificar_agente_info, style="TButton")
+        agente_boton.grid(row=4, column=0, columnspan=2, padx=10, pady=10, sticky="nsew")
+
     def modify_client_info(self):
         # Abre la ventana de modificación de información del cliente
         client_info_window = tk.Toplevel(self.root)
@@ -67,12 +70,26 @@ class ModifyInfoWindow:
         client_info_window.wait_window()
 
     def modificar_emprededor_info(self):
-        emprendedor_window = tk.Toplevel(self.root)
-        ModificarEmprendedor(emprendedor_window)
-        emprendedor_window.transient(self.root)
-        emprendedor_window.grab_set()
-        emprendedor_window.wait_window()
+        modificar_emprendedor_window = tk.Toplevel(self.root)
+        from ModificarEmprendedor import ModificarEmprendedor
+        app = ModificarEmprendedor(modificar_emprendedor_window)
+        #################################
+    #    emprendedor_window = tk.Toplevel(self.root)
+    #    ModificarEmprendedor(emprendedor_window)
+    #    emprendedor_window.transient(self.root)
+    #    emprendedor_window.grab_set()
+    #    emprendedor_window.wait_window()
 
+    def modificar_agente_info(self):
+        modificar_agente_window = tk.Toplevel(self.root)
+        from ModificarAgente import ModificarAgenteApp
+        app = ModificarAgenteApp(modificar_agente_window)
+        #########################
+     #   agente_window = tk.Toplevel(self.root)
+     #   ModificarAgente(agente_window)
+     #   agente_window.transient(self.root)
+     #   agente_window.grab_set()
+     #   agente_window.wait_window()
 
 if __name__ == "__main__":
     root = tk.Tk()

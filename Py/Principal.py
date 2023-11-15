@@ -12,7 +12,7 @@ class HomeApp:
 
         # Tamaño de la ventana
         window_width = 400
-        window_height = 550
+        window_height = 600
 
         # Obtener el ancho y alto de la pantalla
         screen_width = root.winfo_screenwidth()
@@ -83,13 +83,16 @@ class HomeApp:
         cambiar_button = ttk.Button(buttons_frame, text="Cambiar cliente a emprendedor", command=self.cambiarClienteEmprendedor)
         cambiar_button.grid(row=3, column=0, columnspan=2, pady=10, sticky="nsew")
 
+        atencion_info_button = ttk.Button(buttons_frame, text="Atenciones Cliente y Emprendedor", command=self.atenciones_info)
+        atencion_info_button.grid(row=4, column=0, columnspan=2, pady=10, sticky="nsew")
+
         # Botón para modificar la información
         modify_info_button = ttk.Button(buttons_frame, text="Modificar Información", command=self.modify_info)
-        modify_info_button.grid(row=4, column=0, columnspan=2, pady=10, sticky="nsew")
+        modify_info_button.grid(row=5, column=0, columnspan=2, pady=10, sticky="nsew")
 
         # Botón para cerrar la sesión
         logout_button = ttk.Button(buttons_frame, text="Cerrar Sesión", command=self.logout)
-        logout_button.grid(row=5, column=0, columnspan=2, pady=10, sticky="nsew")
+        logout_button.grid(row=6, column=0, columnspan=2, pady=10, sticky="nsew")
 
         # Configurar las columnas y filas para hacer que la interfaz sea responsiva
         frame.columnconfigure(0, weight=1)
@@ -120,8 +123,13 @@ class HomeApp:
 
     def cambiarClienteEmprendedor(self):
         cambiar_window = tk.Toplevel(self.root)
-        from Cliente import ClienteApp
-        app = ClienteApp(cambiar_window)
+        from Cambiar_cliente_enprendedor import Cambiar
+        app = Cambiar(cambiar_window)
+
+    def atenciones_info(self):
+        atenciones_window = tk.Toplevel(self.root)
+        from Atenciones import Atenciones
+        app = Atenciones(atenciones_window)
 
     def modify_info(self):
         # Crear una nueva ventana para modificar la información
